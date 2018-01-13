@@ -64,4 +64,4 @@ title(InformeHovMollerDiario)
 
 axis([-inf inf 1980 2020])
 
-CreaFigura(gcf,FicheroGraficoHMDiario,[4 7])
+CreaFigura(gcf,FicheroGraficoHMDiario,[4])

@@ -122,7 +122,7 @@ for NumDatSet=[1 2]
     InformeAnho=sprintf('%s',InformeAnho1,InformeAnho2,InformeAnho3,InformeAnho4,InformeAnho5);
     title(InformeAnho)
     
-    CreaFigura(gcf,FicheroGraficoAno,[4 7])
+    CreaFigura(gcf,FicheroGraficoAno,[4])
     save(FileNameInforme,'InformeAnho');
 end
 

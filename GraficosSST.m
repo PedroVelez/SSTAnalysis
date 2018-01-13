@@ -182,7 +182,7 @@ for NumDatSet=[1 2]
     box on
     
     
-    CreaFigura(gcf,FicheroGraficoCicloEstacional,[4 7])
+    CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
     
     
     %% Figura del mes seleccion
@@ -221,8 +221,8 @@ for NumDatSet=[1 2]
     InformeMes=sprintf('%s',InformeMes1,InformeMes2,InformeMes3,InformeMes4,InformeMes5);
     title(InformeMes)
     
-    CreaFigura(gcf,FicheroGraficoMes,[4 7])
-    CreaFigura(gcf,FicheroGraficoMesNombre,[4 7])
+    CreaFigura(gcf,FicheroGraficoMes,[4])
+    CreaFigura(gcf,FicheroGraficoMesNombre,[4])
     
     %% Diagrama de Hovmoller
     GraficosSSTRaprocan_HovMoller
