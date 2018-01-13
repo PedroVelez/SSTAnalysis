@@ -30,10 +30,10 @@ for NumDatSet=[1 2]
     end
     
     FileNameInforme=strcat(DirFigures,'/InformeCicloEstacional',DataFile);
-    FicheroGraficoCicloEstacional=strcat(mfilename,DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
-    FicheroGraficoMes=strcat(mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
-    FicheroGraficoMesNombre=strcat(mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s',min(Estaciones),max(Estaciones),TMesSelecionado));
-    FicheroGraficoHMDiario=strcat(mfilename,DataFile(4:end),'_',sprintf('HovMollerDiario_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
+    FicheroGraficoCicloEstacional=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
+    FicheroGraficoMes=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
+    FicheroGraficoMesNombre=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s',min(Estaciones),max(Estaciones),TMesSelecionado));
+    FicheroGraficoHMDiario=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('HovMollerDiario_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
     
     %Fechas en formato vec
     [YdSST,MdSST,DdSST]=datevec(Timed);

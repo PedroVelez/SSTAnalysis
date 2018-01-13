@@ -1,9 +1,9 @@
 #!/bin/bash
 
 Verbose=0
-SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
+SoloSube=1 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
-DirFigure=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST
+DirFigure=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Figures
 DirLog=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST
 DirLocalWeb=/Users/pvb/Dropbox/Particular/DisenoGrafico/PaginaWeb/pedro/images
 

@@ -15,7 +15,7 @@ for NumDatSet=[1 2]
     end
     
     FileNameInforme=strcat(DirFigures,'/InformeAnual',DataFile);
-    FicheroGraficoAno=strcat('Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
+    FicheroGraficoAno=strcat('./Figures/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
     
     DSST=load(DataFile);
     SSTd=DSST.sstd;
