@@ -1,5 +1,6 @@
 clc;clear all;close all
-load('ActualizaGraficosSSTOpciones');
+
+ActualizaGraficosSSTOpciones
 
 Files=dir(strcat(DirDataSST,'*'));
 for i1=1:length(Files)
@@ -31,6 +32,6 @@ for iEstaciones=1:length(loneR)
     sstd(iEstaciones,:)=DataSST.ssttd(ilon,ilat,:);
 end
 
-save('SSTNorteTenerife','sstd','jdaySST')
+save('./Data/SSTNorteTenerife','sstd','jdaySST')
 
 

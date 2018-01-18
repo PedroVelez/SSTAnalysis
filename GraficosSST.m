@@ -1,5 +1,6 @@
 clc;clear all;close all
-load('ActualizaGraficosSSTOpciones');
+
+ActualizaGraficosSSTOpciones
 
 NAnosR=4; %Numero de anos atrasado a representar
 
@@ -15,7 +16,7 @@ for NumDatSet=[1 2]
         TemperatureLimts=[17 26];
     end
     
-    DSST=load(DataFile);
+    DSST=load(strcat('./Data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
     [Yn,Md,Dn]=datevec(now);
