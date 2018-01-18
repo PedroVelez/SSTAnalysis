@@ -15,7 +15,7 @@ for NumDatSet=[1 2]
         TemperatureLimts=[17 26];
     end
     
-    FileNameInforme=strcat(DirFigures,'/InformeAnual',DataFile);
+    FileNameInforme=strcat(DirFigures,'/Data/InformeAnual',DataFile);
     FicheroGraficoAno=strcat('./Figures/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
     
     DSST=load(strcat('./Data/',DataFile));

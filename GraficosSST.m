@@ -30,7 +30,8 @@ for NumDatSet=[1 2]
         TMesSelecionado=MesesEspanol(MesSelecionado);
     end
     
-    FileNameInforme=strcat(DirFigures,'/InformeCicloEstacional',DataFile);
+    
+    FileNameInforme=strcat(DirFigures,'/Data/InformeCicloEstacional',DataFile);
     FicheroGraficoCicloEstacional=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
     FicheroGraficoMes=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
     FicheroGraficoMesNombre=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s',min(Estaciones),max(Estaciones),TMesSelecionado));
