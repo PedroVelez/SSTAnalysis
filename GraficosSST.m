@@ -20,16 +20,20 @@ for NumDatSet=[1 2]
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
     [Yn,Md,Dn]=datevec(now);
+    [Ye,Me,De]=datevec(Timed(end));
     
     %Determina el mes
-    if now-max(Timed)>2
-        MesSelecionado=Md;
-        TMesSelecionado=MesesEspanol(MesSelecionado);
-    else
-        MesSelecionado=Md-1;
-        TMesSelecionado=MesesEspanol(MesSelecionado);
-    end
+    %if now-max(Timed)>2
+    %    MesSelecionado=Md;
+    %    TMesSelecionado=MesesEspanol(MesSelecionado);
+    %else
+    %    MesSelecionado=Md-1;
+    %    TMesSelecionado=MesesEspanol(MesSelecionado);
+    %end
     
+    %El mes para la estadistica es el ultimo con datos
+    MesSelecionado=Me;
+    TMesSelecionado=MesesEspanol(MesSelecionado);
     
     FileNameInforme=strcat(DirFigures,'/Data/InformeCicloEstacional',DataFile);
     FicheroGraficoCicloEstacional=strcat('./Figures/',mfilename,DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));

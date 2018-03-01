@@ -4,7 +4,7 @@ Verbose=0
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
 DirFigure=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Figures
-DirLog=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST
+DirLog=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Log
 DirLocalWeb=/Users/pvb/Dropbox/Particular/DisenoGrafico/PaginaWeb/pedro/images
 
 /bin/rm -f $DirLog/ActualizaGraficosSST_matlab.log
@@ -47,11 +47,11 @@ fi
 #------------------------------------
 printf "Upload png files to the server\n"
 cd $DirLocalWeb
-ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_CicloEstacional_Seccion11_22.png
-ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_Mensual_Seccion11_22.png
-ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_Anual_Seccion11_22.png
-ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_HovMollerDiario_Seccion11_22.png
-ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_CicloEstacional_Seccion01_02.png
-ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_Mensual_Seccion01_02.png
-ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_Anual_Seccion01_02.png
-ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_HovMollerDiario_Seccion01_02.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_CicloEstacional_Seccion11_22.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_Mensual_Seccion11_22.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_Anual_Seccion11_22.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTRaprocan_HovMollerDiario_Seccion11_22.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_CicloEstacional_Seccion01_02.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_Mensual_Seccion01_02.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_Anual_Seccion01_02.png
+/usr/local/bin/ncftpput OceanografiaES /html/images RGraficosSSTNorteTenerife_HovMollerDiario_Seccion01_02.png

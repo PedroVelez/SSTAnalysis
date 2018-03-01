@@ -2,7 +2,7 @@ clc;clear all;close all
 
 ActualizaGraficosSSTOpciones
 
-Files=dir(strcat(DirDataSST,'*'));
+Files=dir(strcat(FileDataSST,'*'));
 for i1=1:length(Files)
     DatatSST=matfile(strcat(Files(i1).folder,'/',Files(i1).name));
     TimeLast(i1)=nanmax(DatatSST.timetd);
