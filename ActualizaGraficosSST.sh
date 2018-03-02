@@ -7,8 +7,22 @@ DirFigure=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Figures
 DirLog=/Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Log
 DirLocalWeb=/Users/pvb/Dropbox/Particular/DisenoGrafico/PaginaWeb/pedro/images
 
-/bin/rm -f $DirLog/ActualizaGraficosSST_matlab.log
 
+/bin/rm -f $DirLog/*.log
+
+#------------------------------------
+#Actualiza datos SST
+#------------------------------------
+printf "Updating SST data\n"
+if [ $Verbose -eq 1 ]
+then
+  /Applications/MATLAB_R2016b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit'
+else
+  /Applications/MATLAB_R2016b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaDataNoaaOisstV2Highres.log
+fi
+
+
+#------------------------------------
 # Update the figures (png)
 #------------------------------------
 if [ $SoloSube == 0 ]
