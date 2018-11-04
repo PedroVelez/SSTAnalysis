@@ -16,7 +16,7 @@ for NumDatSet=[1 2]
     end
     
     FileNameInforme=strcat(DirFigures,'/Data/InformeAnual',DataFile);
-    FicheroGraficoAno=strcat('./Figures/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d',min(Estaciones),max(Estaciones)));
+    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     
     DSST=load(strcat('./Data/',DataFile));
     SSTd=DSST.sstd;
@@ -89,8 +89,6 @@ for NumDatSet=[1 2]
     plot([TimeAnual(1:end-1) TimeAnualHoy(end)],[MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'ko-','MarkerFacecolor','k','Markersize',5); hold on
     plot(TimeAnualHoy(end),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy,'o','MarkerFacecolor','c','Markersize',8); hold on
     
-    %D=[TimeAnual(1:end-1) TimeAnualHoy(end)];
-    %SST=[MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy];
     %linea con la media
     plot([datenum(uY(1),1,1) datenum(uY(end),12,31)],[nanmean(MEstacionesSSTanualM(1:end-1)) nanmean(MEstacionesSSTanualM(1:end-1))],'-','color',[0.5 0.5 0.5],'linewidth',3)
     
@@ -98,7 +96,7 @@ for NumDatSet=[1 2]
     plot([TimeAnual(1) TimeAnualHoy(end-1)],[MEstacionesSSTanualHoyM(end)+OffSetDiaHoy MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'k--')
     plot([TimeAnualHoy(end) TimeAnualHoy(end)],[MEstacionesSSTanualHoyM(end)+OffSetDiaHoy TempLimits(1)],'k--')
     
-    %Vaor dato maximo
+    %Valsor dato maximo
     plot(TimeAnual(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),'sr','Markersize',10,'MarkerFaceColor','r');
     %Vaor dato minimo
     plot(TimeAnual(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),'sb','Markersize',10,'MarkerFaceColor','b');
@@ -126,6 +124,12 @@ for NumDatSet=[1 2]
     title(InformeAnho)
     
     CreaFigura(gcf,FicheroGraficoAno,[4])
+    %Ftp the file
+    ftpobj=FtpOceanografia;
+    cd(ftpobj,'/html/images');
+    mput(ftpobj,FicheroGraficoAno);
+    close(ftpobj)
+    
     save(FileNameInforme,'InformeAnho');
 end
 
