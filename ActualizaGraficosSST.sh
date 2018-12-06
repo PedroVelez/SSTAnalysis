@@ -37,8 +37,8 @@ then
 printf "Updating the figures\n"
   if [ $Verbose == 1 ]
   then
-  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;ActualizaGraficosSST;exit'
+  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit'
   else
-  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;ActualizaGraficosSST;exit' >> $DirLog/ActualizaGraficosSST_matlab.log
+  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit' >> $DirLog/ActualizaGraficosSST_matlab.log
   fi
 fi

@@ -1,11 +1,10 @@
 clc;clear all;close all
 
-ActualizaGraficosSSTOpciones
-
-NAnosR=4; %Numero de anos atrasado a representar
+A11ActualizaGraficosSSTOpciones
 
 %% Inicio
 for NumDatSet=[1 2]
+    
     if NumDatSet==1
         DataFile='SSTRaprocan';
         Estaciones=[11:1:22]; %Oceanicas
@@ -27,10 +26,10 @@ for NumDatSet=[1 2]
     TMesSelecionado=MesesEspanol(MesSelecionado);
     
     FileNameInforme=strcat(DirFigures,'/Data/InformeCicloEstacional',DataFile);
-    FicheroGraficoCicloEstacional=strcat('./images/',mfilename,DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
-    FicheroGraficoMes=strcat('./images/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
-    FicheroGraficoMesNombre=strcat('./images/',mfilename,DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s.png',min(Estaciones),max(Estaciones),TMesSelecionado));
-    FicheroGraficoHMDiario=strcat('./images/',mfilename,DataFile(4:end),'_',sprintf('HovMollerDiario_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
+    FicheroGraficoCicloEstacional=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
+    FicheroGraficoMes=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
+    FicheroGraficoMesNombre=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s.png',min(Estaciones),max(Estaciones),TMesSelecionado));
+    FicheroGraficoHMDiario=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('HovMollerDiario_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     
     %Fechas en formato vec
     [YdSST,MdSST,DdSST]=datevec(Timed);

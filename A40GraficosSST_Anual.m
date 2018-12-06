@@ -1,6 +1,6 @@
 clc;clear all;close all
 
-ActualizaGraficosSSTOpciones
+A11ActualizaGraficosSSTOpciones
 
 %% Inicio
 for NumDatSet=[1 2]
@@ -30,7 +30,7 @@ for NumDatSet=[1 2]
     
     
     %% Calculo los promediosanuales anos completos
-    %Bucle sobre todas las estaciones con datos
+    % Bucle sobre todas las estaciones con datos
     for iEs=1:size(DSST.sstd,1)
         iim=0;
         %Bucle sobre todos los a?os para promedio anual
@@ -85,7 +85,7 @@ for NumDatSet=[1 2]
     
     %Limites
     TempLimits=extrem([MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy]);
-    % Plot de los datos promedio anuales  y el promeido del utlimo a?o corregido
+    % Plot de los datos promedio anuales  y el promeido del utlimo ano corregido
     plot([TimeAnual(1:end-1) TimeAnualHoy(end)],[MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'ko-','MarkerFacecolor','k','Markersize',5); hold on
     plot(TimeAnualHoy(end),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy,'o','MarkerFacecolor','c','Markersize',8); hold on
     

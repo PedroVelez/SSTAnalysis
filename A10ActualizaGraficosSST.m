@@ -1,18 +1,16 @@
-%%Los datos de SST se actualizan en un script separado
+%Los datos de SST se actualizan en un script separado
 
-%Actualizo despues la base datos de SST en las estaciones Raprocan
-CreaSSTRaprocan
-CreaSSTNorteTenerife
+%% Actualizo la base datos de SST en las estaciones Raprocan
+A20CreaSSTNorteTenerife
+A30CreaSSTRaprocan
 
-%Anual
-GraficosSST_Anual
+%% Anual and Ciclo estacional y Hovmoller plots
+A40GraficosSST_Anual
+A50GraficosSST
 
-%Ciclo estacional y Hovmoller
-GraficosSST
+%% Send reports
+A11ActualizaGraficosSSTOpciones
 
-
-%% Envia informes
-ActualizaGraficosSSTOpciones
 InformeActualizaData=load(strcat(DirDataSST,'/InformeActualizaData'));
 InformeCicloEstacional=load(strcat(DirFigures,'/Data/InformeCicloEstacionalSSTRaprocan'));
 InformeAnual=load(strcat(DirFigures,'/Data/InformeAnualSSTRaprocan'));
