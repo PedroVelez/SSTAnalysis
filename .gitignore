@@ -1,5 +1,6 @@
 ActualizaGraficosSST_matlab.log
-iimages/*
-Figures/*
-Data/*
-Log/*
+images/
+Figures/
+Data/
+Log/
+log/
