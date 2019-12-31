@@ -13,9 +13,10 @@ DataSST=matfile(strcat(Files(iFileLast).folder,'/',Files(iFileLast).name));
 
 %% Inicio
 fprintf('Interpolating data into North of Tenerife section: ')
-loneR=[-16.1188 -16.1188];
-lateR=[28.5559 28.5559];
-nestacion=[1 2];
+data=load(EstNorteTenerife);
+loneR=data(:,1)';
+lateR=data(:,2)';
+nestacion=data(:,3)';
 
 lonSST=DataSST.lon;
 latSST=DataSST.lat;

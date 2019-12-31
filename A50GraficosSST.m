@@ -181,7 +181,7 @@ for NumDatSet=[1 2]
     CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
     %Ftp the file
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/images');
+    cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoCicloEstacional);
     close(ftpobj)
     
@@ -225,7 +225,7 @@ for NumDatSet=[1 2]
     
     CreaFigura(gcf,FicheroGraficoMes,[4])
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/images');
+    cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoMes);
     close(ftpobj)
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
@@ -295,7 +295,7 @@ for NumDatSet=[1 2]
     
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/images');
+    cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoHMDiario);
     close(ftpobj)
     

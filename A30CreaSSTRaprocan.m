@@ -11,10 +11,9 @@ iFileLast=find(TimeLast==max(TimeLast));
 
 DataSST=matfile(strcat(Files(iFileLast).folder,'/',Files(iFileLast).name));
 
-
 %% Inicio
 fprintf('Interpolating data into Raprocan section: ')
-data=load(EstBDRaprocan);
+data=load(EstRaprocan);
 loneR=data(:,1)';
 lateR=data(:,2)';
 nestacion=data(:,3)';

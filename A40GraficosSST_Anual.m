@@ -126,7 +126,7 @@ for NumDatSet=[1 2]
     CreaFigura(gcf,FicheroGraficoAno,[4])
     %Ftp the file
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/images');
+    cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoAno);
     close(ftpobj)
     
