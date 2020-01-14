@@ -277,13 +277,15 @@ for NumDatSet=[1 2]
     contour(CATimed1980,uY2,aMEstSSTHM_d2,[-1 -1],'k--','linewidth',2);hold on;grid on
     
     
-    %Ultimo dia con datos
+    %Ultimo dia con datos [no lo hafce el ultimo dia del año.]
+    if ~isempty(find(isnan(aMEstSSTHM_d(end,:)),1))
     plot(CATimed1980(find(isnan(aMEstSSTHM_d(end,:)),1)-1),uY(end),'o')
+    end
     
     colormap(jet)
     colorbar
     caxis([-2 2])
-    set(gca,'Ytick',[1980 1985 1986 1990 1995 1997 2000 2003 2004 2005 2010 2012 2014 2016 uY(end) 2020])
+    set(gca,'Ytick',[1980 1985 1986 1990 1995 1997 2000 2003 2004 2005 2010 2012 2014 2016 2019 uY(end)])
     set(gca,'Xtick',[datenum(1980,2,1) datenum(1980,5,1) datenum(1980,8,1) datenum(1980,11,1)])
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])

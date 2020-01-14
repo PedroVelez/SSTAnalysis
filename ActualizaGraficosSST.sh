@@ -23,9 +23,9 @@ then
   printf "Updating SST data\n"
   if [ $Verbose -eq 1 ]
   then
-    /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit'
+    /Applications/MATLAB_R2019b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit'
   else
-    /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaDataNoaaOisstV2Highres.log
+    /Applications/MATLAB_R2019b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaDataNoaaOisstV2Highres.log
   fi
 fi
 
@@ -37,8 +37,8 @@ then
 printf "Updating the figures\n"
   if [ $Verbose == 1 ]
   then
-  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit'
+  /Applications/MATLAB_R2019b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit'
   else
-  /Applications/MATLAB_R2018a.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit' >> $DirLog/ActualizaGraficosSST_matlab.log
+  /Applications/MATLAB_R2019b.app/bin/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A10ActualizaGraficosSST;exit' >> $DirLog/ActualizaGraficosSST_matlab.log
   fi
 fi
