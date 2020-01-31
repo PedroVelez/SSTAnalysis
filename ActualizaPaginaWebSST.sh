@@ -4,17 +4,29 @@ Verbose=0
 SoloSube=1 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
 PaginaWebDir=$HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST
-DirLog=$HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST/Log
-MatVersion=/Applications/MATLAB_R2019b.app/bin/matlab
+DirLog=$PaginaWebDir/Log
 
+strval=$(uname -a)
+if [[ $strval == *Okapi* ]];
+then
+  MatVersion=/Applications/MATLAB_R2019b.app/bin/matlab
+fi
+if [[ $strval == *vibrio* ]];
+then
+  MatVersion=matlab
+fi
+
+#------------------------------------
+#Inicio
+#------------------------------------
 
 /bin/rm -f $DirLog/*.log
 
 printf ">>>> Updating PaginaWeb SSTs \n"
 printf "  Verbose $Verbose SoloSube $SoloSube \n"
-printf "  DirLog      $DirLog \n"
+printf "  PaginaWebDir $PaginaWebDir \n"
+printf "  DirLog       $DirLog \n"
 
-/bin/rm -f $DirLog/*.log
 
 #------------------------------------
 #Actualiza datos SST
