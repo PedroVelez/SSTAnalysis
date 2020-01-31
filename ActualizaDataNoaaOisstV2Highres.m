@@ -3,10 +3,8 @@ close all;clear all;clc
 %NOAA OI SST V2 High Resolution Dataset
 %Baja los datos de https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.highres.html
 %https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.highres.html
-
+%
 %Original source NCEI at ftp://eclipse.ncdc.noaa.gov/pub/OI-daily-v2/.
-
-%y actualiza la base de datos existente
 
 NameRegion='CCLME';
 
@@ -18,7 +16,8 @@ AnhoI=1982;
 AnhoF=2020;
 
 %% inicio
-DirData='/Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres';
+
+DirData=strcat(getenv('HOME'),'/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres');
 FileNameInforme=strcat(DirData,'/InformeActualizaData');
 
 %Nombre del fichero vigente

@@ -13,7 +13,7 @@ MatlabPath=/Applications/MATLAB_R2019b.app/bin
 #------------------------------------
 if [ $Verbose -eq 1 ]
 then
-  $MatlabPath/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit'
+  matlab -nodisplay -nosplash -r 'cd $HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST;ActualizaDataNoaaOisstV2Highres;exit'
 else
-  $MatlabPath/matlab -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres;ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaDataNoaaOisstV2Highres.log
+  matlab -nodisplay -nosplash -r 'cd $HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST;ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaDataNoaaOisstV2Highres.log
 fi
