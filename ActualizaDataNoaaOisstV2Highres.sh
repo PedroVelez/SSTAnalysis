@@ -11,6 +11,7 @@ MatlabPath=/Applications/MATLAB_R2019b.app/bin
 #------------------------------------
 #Actualiza datos
 #------------------------------------
+printf "NoaaOisstV2Highres Updating SST data\n"
 if [ $Verbose -eq 1 ]
 then
   matlab -nodisplay -nosplash -r 'cd $HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST;ActualizaDataNoaaOisstV2Highres;exit'
