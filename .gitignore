@@ -6,5 +6,6 @@ Data/SST*
 Log/
 log/
 AppleDouble
+.AppleDouble
 .AppleDouble/*
 .DS_Store
