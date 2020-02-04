@@ -1,7 +1,10 @@
 ActualizaGraficosSST_matlab.log
 images/
 Figures/
-Data/
+Data/Inform*
+Data/SST*
 Log/
 log/
+AppleDouble
 ./AppleDouble/*
+.DS_Store

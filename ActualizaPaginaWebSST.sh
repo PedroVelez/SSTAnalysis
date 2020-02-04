@@ -1,7 +1,7 @@
 #!/bin/bash
 
 Verbose=0
-SoloSube=1 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
+SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
 PaginaWebDir=$HOME/Dropbox/Oceanografia/Proyectos/PaginaWebSST
 DirLog=$PaginaWebDir/Log
@@ -13,7 +13,7 @@ then
 fi
 if [[ $strval == *vibrio* ]];
 then
-  MatVersion=matlab
+  MatVersion=/home/pvb/Matlab/Matlab2019b/bin/matlab
 fi
 
 #------------------------------------
@@ -38,7 +38,7 @@ then
   then
     $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A10ActualizaDataNoaaOisstV2Highres;exit'
   else
-    $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A01ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaGraficosData.log
+    $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A10ActualizaDataNoaaOisstV2Highres;exit' >> $DirLog/ActualizaGraficosData.log
   fi
 fi
 
@@ -55,9 +55,9 @@ fi
 printf "Updating SSTRa\n"
 if [ $Verbose == 1 ]
 then
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A20CreaSSTNorteTenerife;exit'
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A20CreaSSTNorteTenerife;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
 fi
 
 #------------------------------------
@@ -66,14 +66,14 @@ fi
 printf "Updating seasonal cycle\n"
 if [ $Verbose == 1 ]
 then
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A40GraficosSST_Anual;exit'
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A40GraficosSST_Anual;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A40GraficosSST_Anual;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A40GraficosSST_Anual;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
 fi
 printf "Updating hovmoller plotsa\n"
 if [ $Verbose == 1 ]
 then
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A50GraficosSST;exit'
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A50GraficosSST;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd /Users/pvb/Dropbox/Oceanografia/Proyectos/PaginaWebSST;A50GraficosSST;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A50GraficosSST;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
 fi
