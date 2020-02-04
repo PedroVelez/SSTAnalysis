@@ -50,14 +50,14 @@ if [ $Verbose == 1 ]
 then
   $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit' >> $DirLog/ActualizaPaginaWebSSTNorte.log
 fi
 printf "Updating SSTRa\n"
 if [ $Verbose == 1 ]
 then
-  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit'
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A30CreaSSTRaprocan;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A20CreaSSTNorteTenerife;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A30CreaSSTRaprocan;exit' >> $DirLog/ActualizaPaginaWebSSTRaprocan.log
 fi
 
 #------------------------------------
@@ -68,12 +68,12 @@ if [ $Verbose == 1 ]
 then
   $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A40GraficosSST_Anual;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A40GraficosSST_Anual;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A40GraficosSST_Anual;exit' >> $DirLog/ActualizaPaginaWebSSTGraficos.log
 fi
 printf "Updating hovmoller plotsa\n"
 if [ $Verbose == 1 ]
 then
   $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A50GraficosSST;exit'
 else
-  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A50GraficosSST;exit' >> $DirLog/ActualizaPaginaWebSSSTNorte.log
+  $MatVersion -nodisplay -nosplash -r 'cd $PaginaWebDir;A50GraficosSST;exit' >> $DirLog/ActualizaPaginaWebSSTGraficosH.log
 fi
