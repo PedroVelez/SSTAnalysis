@@ -1,11 +1,8 @@
-ActualizaGraficosSST_matlab.log
-images/
-Figures/
-Data/Inform*
-Data/SST*
-Log/
-log/
-AppleDouble
+*.nc
+images/*.png
+log/*
+data/report*
+data/*.mat
 .AppleDouble
 .AppleDouble/*
 .DS_Store

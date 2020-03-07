@@ -1,9 +1,11 @@
 clc;clear all;close all
 
-A11ActualizaGraficosSSTOpciones
+%Read options
+configSSTWebpage
+
 
 %% Inicio
-for NumDatSet=[1 2]
+for NumDatSet = [1 2]
     
     if NumDatSet==1
         DataFile='SSTRaprocan';
@@ -15,7 +17,7 @@ for NumDatSet=[1 2]
         TemperatureLimts=[17 26];
     end
     
-    DSST=load(strcat('./Data/',DataFile));
+    DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
     [Yn,Md,Dn]=datevec(now);
@@ -25,7 +27,7 @@ for NumDatSet=[1 2]
     MesSelecionado=Me;
     TMesSelecionado=MesesEspanol(MesSelecionado);
     
-    FileNameInforme=strcat(DirFigures,'/Data/InformeCicloEstacional',DataFile);
+    FileNameInforme=strcat(DirFigures,'/data/reportSeasonalCycle',DataFile);
     FicheroGraficoCicloEstacional=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('CicloEstacional_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     FicheroGraficoMes=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     FicheroGraficoMesNombre=strcat('./images/GraficosSST',DataFile(4:end),'_',sprintf('Mensual_Seccion%02d_%02d_%s.png',min(Estaciones),max(Estaciones),TMesSelecionado));
@@ -180,6 +182,7 @@ for NumDatSet=[1 2]
     
     CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
     %Ftp the file
+    
     ftpobj=FtpOceanografia;
     cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoCicloEstacional);
@@ -224,6 +227,7 @@ for NumDatSet=[1 2]
     title(InformeMes)
     
     CreaFigura(gcf,FicheroGraficoMes,[4])
+    
     ftpobj=FtpOceanografia;
     cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoMes);
@@ -279,7 +283,7 @@ for NumDatSet=[1 2]
     
     %Ultimo dia con datos [no lo hafce el ultimo dia del año.]
     if ~isempty(find(isnan(aMEstSSTHM_d(end,:)),1))
-    plot(CATimed1980(find(isnan(aMEstSSTHM_d(end,:)),1)-1),uY(end),'o')
+        plot(CATimed1980(find(isnan(aMEstSSTHM_d(end,:)),1)-1),uY(end),'o')
     end
     
     colormap(jet)

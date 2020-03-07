@@ -1,6 +1,7 @@
 clc;clear all;close all
 
-A11ActualizaGraficosSSTOpciones
+%Read options
+configSSTWebpage
 
 Files=dir(strcat(FileDataSST,'*'));
 for i1=1:length(Files)
@@ -12,8 +13,8 @@ iFileLast=find(TimeLast==max(TimeLast));
 DataSST=matfile(strcat(Files(iFileLast).folder,'/',Files(iFileLast).name));
 
 %% Inicio
-fprintf('Interpolating data into Raprocan section: ')
-data=load(EstRaprocan);
+fprintf('Interpolating data into North of Tenerife section: ')
+data=load(EstNorteTenerife);
 loneR=data(:,1)';
 lateR=data(:,2)';
 nestacion=data(:,3)';
@@ -31,4 +32,4 @@ for iEstaciones=1:length(loneR)
     sstd(iEstaciones,:)=DataSST.ssttd(ilon,ilat,:);
 end
 fprintf(' \nSaving data\n')
-save('./Data/SSTRaprocan','sstd','jdaySST')
+save('./data/SSTNorteTenerife','sstd','jdaySST')

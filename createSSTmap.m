@@ -1,6 +1,7 @@
 clc;clear all;close all
 
-A11ActualizaGraficosSSTOpciones
+%Read options
+configSSTWebpage
 
 Files=dir(strcat(FileDataSST,'*'));
 for i1=1:length(Files)
@@ -53,8 +54,6 @@ XL=nanmin(lon(:))+0.05*Rango(lon);
 YL=nanmax(lat(:))-0.025*Rango(lat);
 h3=m_text(XL,YL,sprintf('%4d %02d %02d',Ye,Mo,Da),'backgroundcolor','w','Fontsize',16);
 
-%Titulo=sprintf('%s %s',Op.titulo,Op.ztitulo);
-%title(Titulo,'FontSize',12,'Fontweight','bold','interpreter','none');
 m_usercoast(Op.filecosta,'patch',[.7 .6 .4,],'edgecolor',[.7 .6 .4,]);hold on
 m_grid('linestyle','none')
 colorbar
@@ -71,8 +70,6 @@ orient landscape;
 figure
 m_proj('mercator','lon',[Op.lon_min Op.lon_max],'lat',[Op.lat_min Op.lat_max])
 [c,h1]=m_contourf(lon,lat,zvarm',80,'edgecolor','none');hold on
-%Titulo=sprintf('Monthly (%d) mean %s %s',Mo,Op.titulo,Op.ztitulo);
-%title(Titulo,'FontSize',12,'Fontweight','bold','interpreter','none');
 m_usercoast(Op.filecosta,'patch',[.7 .6 .4,],'edgecolor',[.7 .6 .4,]);hold on
 m_grid('linestyle','none')
 colorbar
@@ -89,8 +86,6 @@ orient landscape;
 figure
 m_proj('mercator','lon',[Op.lon_min Op.lon_max],'lat',[Op.lat_min Op.lat_max])
 [c,h1]=m_contourf(lon,lat,zvar'-zvarm',80,'edgecolor','none');hold on
-%Titulo=sprintf('Anomaly (SST-Monthly(%02d)mean)  %s %s',Mo,Op.titulo,Op.ztitulo);
-%title(Titulo,'FontSize',12,'Fontweight','bold','interpreter','none');
 m_usercoast(Op.filecosta,'patch',[.7 .6 .4,],'edgecolor',[.7 .6 .4,]);hold on
 m_grid('linestyle','none')
 colorbar

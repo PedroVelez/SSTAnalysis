@@ -1,9 +1,11 @@
 clc;clear all;close all
 
-A11ActualizaGraficosSSTOpciones
+%Read options
+configSSTWebpage
+
 
 %% Inicio
-for NumDatSet=[1 2]
+for NumDatSet = [1 2]
     
     if NumDatSet==1
         DataFile='SSTRaprocan';
@@ -15,10 +17,10 @@ for NumDatSet=[1 2]
         TemperatureLimts=[17 26];
     end
     
-    FileNameInforme=strcat(DirFigures,'/Data/InformeAnual',DataFile);
+    FileNameInforme=strcat(DirFigures,'/data/reportYearly',DataFile);
     FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     
-    DSST=load(strcat('./Data/',DataFile));
+    DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
     
@@ -124,6 +126,7 @@ for NumDatSet=[1 2]
     title(InformeAnho)
     
     CreaFigura(gcf,FicheroGraficoAno,[4])
+    
     %Ftp the file
     ftpobj=FtpOceanografia;
     cd(ftpobj,'/html/pedro/images');
