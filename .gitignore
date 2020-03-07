@@ -2,6 +2,7 @@
 images/*.png
 log/*
 data/report*
+data/*.mat
 .AppleDouble
 .AppleDouble/*
 .DS_Store
