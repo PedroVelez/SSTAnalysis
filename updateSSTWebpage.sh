@@ -6,6 +6,7 @@ SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 PaginaWebDir=$HOME/Dropbox/Oceanografia/Proyectos/SSTWebpage
 DirLog=$PaginaWebDir/log
 
+
 strval=$(uname -a)
 if [[ $strval == *Okapi* ]];
 then
@@ -78,3 +79,19 @@ then
 else
   cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures;exit' > $DirLog/createSSTfigures.log
 fi
+
+printf "Updating reports\n"
+if [ $Verbose == 1 ]
+then
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createReport;exit'
+else
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createReport;exit' > $DirLog/createReport.log
+fi
+
+
+#------------------------------------
+# Anual and Ciclo estacional y Hovmoller plots
+#------------------------------------
+URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
+MENSAJE=`cat /Users/pvb/Dropbox/Oceanografia/Proyectos/SSTWebpage/data/report.txt`
+curl -s -X POST $URL -d chat_id=$ArgoEsBotID -d text="$MENSAJE"
