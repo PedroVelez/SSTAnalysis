@@ -1,5 +1,4 @@
 *.nc
-images/*.png
 log/*
 data/report*
 data/*.mat
