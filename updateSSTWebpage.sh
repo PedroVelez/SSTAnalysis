@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.bashrc
 
 Verbose=0
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
@@ -94,4 +95,4 @@ fi
 #------------------------------------
 URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
 MENSAJE=`cat $HOME/Dropbox/Oceanografia/Proyectos/SSTWebpage/data/report.txt`
-curl -s -X POST $URL -d chat_id=$ArgoEsBotID -d text="$MENSAJE" -d parse_mode=html
+curl -s -X POST $URL -d chat_id=$ArgoEsBotID -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log 
