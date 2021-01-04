@@ -40,7 +40,6 @@ for NumDatSet = [1 2]
     %Fecha del valor ultimo
     [MYdSST,MMdSST,MDdSST]=datevec(max(Timed));
     
-    
     %% calculo los promedios mensuales y anuales
     %Bucle sobre todas las estaciones con datos
     for iEs=1:size(DSST.sstd,1)
@@ -120,7 +119,7 @@ for NumDatSet = [1 2]
     %% figuras
     %Ciclo anual
     figure
-    Xt=[CATimed2000-365 CATimed2000 CATimed2000+365];
+    Xt=[CATimed2000-366 CATimed2000 CATimed2000+366];
     Ym=[CAMSSTa2000      CAMSSTa2000 CAMSSTa2000];
     Ys=[CASSSTa2000      CASSSTa2000 CASSSTa2000];
     %Desciacion estandasr
@@ -157,14 +156,14 @@ for NumDatSet = [1 2]
     plot([datenum(2000,MMdSST,MDdSST) datenum(2000,MMdSST,MDdSST)],[TemperatureLimts(1) Y(end)],'k--','linewidth',1)
     plot([X(1) X(end)],[Y(end) Y(end)],'k--','linewidth',1)
     
-    InformeDia=sprintf('Temperatura %s: %4.2f C. \n Media periodo %4.2f C. Std periodo %04.2f C. Anomalia %4.2f C.\nPeriodo de referencia %s-%s.', ...
-        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd.mmmm'), ...
+    InformeDia=sprintf('Temperatura %s: %4.2f C. \n Periodo de referencia %s-%s.\n Media en este dia: %4.2f C. Std en este dia: %04.2f C. Anomalia %4.2f C.', ...
+        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm'), ...
         Y(end), ...
+        datestr(min(TimeMesSelecionado),'yyyy'), ...
+        datestr(max(TimeMesSelecionado),'yyyy'), ...
         Ym(Xt==datenum(2000,MMdSST,MDdSST)), ...
         Ys(Xt==datenum(2000,MMdSST,MDdSST)), ...
-        Y(end)-Ym(Xt==datenum(2000,MMdSST,MDdSST)),...
-        datestr(min(TimeMesSelecionado),'yyyy'), ...
-        datestr(max(TimeMesSelecionado),'yyyy'));
+        Y(end)-Ym(Xt==datenum(2000,MMdSST,MDdSST)));
     
     text(datenum(2000,MMdSST,MDdSST),TemperatureLimts(1)+1,sprintf('%s %4.2f C',datestr(datenum(MYdSST,MMdSST,MDdSST),'dd.mmmm'),Y(end)),'backgroundcolor','w')
     
@@ -218,10 +217,10 @@ for NumDatSet = [1 2]
         TMesSelecionado,...
         MeanSSTMesSelecionado,StdSSTMesSelecionado);
     InformeMes4=sprintf('La temperatura max. ocurrio en %s y fue de %4.2f C.\n', ...
-        datestr(MaxTimeMesSelecionado,'mmmm.yyyy'),...
+        datestr(MaxTimeMesSelecionado,'mmmm yyyy'),...
         MaxSSTMesSelecionado);
     InformeMes5=sprintf('La temperatura min. ocurrio en %s y fue de %4.2f C.\n', ...
-        datestr(MinTimeMesSelecionado,'mmmm.yyyy'),...
+        datestr(MinTimeMesSelecionado,'mmmm yyyy'),...
         MinSSTMesSelecionado);
     InformeMes=sprintf('%s',InformeMes1,InformeMes2,InformeMes3,InformeMes4,InformeMes5);
     title(InformeMes)
@@ -276,10 +275,8 @@ for NumDatSet = [1 2]
     aMEstSSTHM_d2(length(uY)+1,:)=aMEstSSTHM_d(length(uY),:);
     uY2(length(uY)+1)=uY(length(uY))+0.5;
     contourf(CATimed1980,uY2,aMEstSSTHM_d2,[-2:0.1:2],'edgecolor','none');hold on;grid on
-    
     contour(CATimed1980,uY2,aMEstSSTHM_d2,[1 1],'k','linewidth',2);hold on;grid on
     contour(CATimed1980,uY2,aMEstSSTHM_d2,[-1 -1],'k--','linewidth',2);hold on;grid on
-    
     
     %Ultimo dia con datos [no lo hafce el ultimo dia del año.]
     if ~isempty(find(isnan(aMEstSSTHM_d(end,:)),1))

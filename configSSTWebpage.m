@@ -1,6 +1,5 @@
 load Globales
 
-
 DirDataSST=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
 FileDataSST=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean');
 

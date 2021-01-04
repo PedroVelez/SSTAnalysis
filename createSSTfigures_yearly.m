@@ -3,7 +3,6 @@ clc;clear all;close all
 %Read options
 configSSTWebpage
 
-
 %% Inicio
 for NumDatSet = [1 2]
     
@@ -18,7 +17,8 @@ for NumDatSet = [1 2]
     end
     
     FileNameInforme=strcat(DirFigures,'/data/reportYearly',DataFile);
-    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual',sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
+    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual', ... 
+        sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     
     DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
@@ -75,7 +75,7 @@ for NumDatSet = [1 2]
     MEstacionesSSTanualHoyM=nanmean(SSTanualHoyM(Estaciones,:));
     StdEstacionesSSTanualHoyM=nanstd(MEstacionesSSTanualHoyM);
     
-    % Calculo el 'offeset asociado a la falta de d?as"
+    % Calculo el offeset asociado a la falta de dias en el promedio anual
     OffSetDiaHoy=nanmean(MEstacionesSSTanualM-MEstacionesSSTanualHoyM);
     
     %% Figuras
@@ -87,6 +87,7 @@ for NumDatSet = [1 2]
     
     %Limites
     TempLimits=extrem([MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy]);
+    
     % Plot de los datos promedio anuales  y el promeido del utlimo ano corregido
     plot([TimeAnual(1:end-1) TimeAnualHoy(end)],[MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'ko-','MarkerFacecolor','k','Markersize',5); hold on
     plot(TimeAnualHoy(end),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy,'o','MarkerFacecolor','c','Markersize',8); hold on
@@ -100,7 +101,8 @@ for NumDatSet = [1 2]
     
     %Valsor dato maximo
     plot(TimeAnual(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),'sr','Markersize',10,'MarkerFaceColor','r');
-    %Vaor dato minimo
+    
+    %Valor dato minimo
     plot(TimeAnual(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),'sb','Markersize',10,'MarkerFaceColor','b');
     axis([datenum(uY(1),1,1) datenum(uY(end),12,31) TempLimits])
     datetick('x','yyyy','keeplimits','keepticks')
@@ -109,17 +111,17 @@ for NumDatSet = [1 2]
     
     InformeAnho1=sprintf('Temperatura media en %s: %4.2f C.\n',datestr(TimeAnualHoy(end),'yyyy'),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy);
     
-    InformeAnho2=sprintf('Datos en el periodo de referecia (%s-%s)\n', ...
+    InformeAnho2=sprintf('Datos en el periodo %s-%s:\n', ...
         datestr(nanmin(TimeAnual),'yyyy'),datestr(nanmax(TimeAnual),'yyyy'));
     
-    InformeAnho3=sprintf('Temperatura media anual: %4.2f C, con desviacion standart: %04.2f C.\n', ...
+    InformeAnho3=sprintf('Temperatura media: %4.2f C,desviacion standart: %04.2f C.\n', ...
         nanmean(MEstacionesSSTanualM(1:end-1)), ...
         nanstd(MEstacionesSSTanualM(1:end-1)));
-    InformeAnho4=sprintf('La temperatura max. ocurrio en %s y fue de %4.2f C.\n',...
+    InformeAnho4=sprintf('La temperatura máxima anual ocurrio en %s y fue de %4.2f C.\n',...
         datestr(TimeAnual(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),'yyyy'), ...
         MEstacionesSSTanualM(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)));
     
-    InformeAnho5=sprintf('La temperatura min. ocurrio en %s y fue de %4.2f C.\n',...
+    InformeAnho5=sprintf('La temperatura mínima anual ocurrio en %s y fue de %4.2f C.\n',...
         datestr(TimeAnual(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),'yyyy'), ...
         MEstacionesSSTanualM(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)));
     InformeAnho=sprintf('%s',InformeAnho1,InformeAnho2,InformeAnho3,InformeAnho4,InformeAnho5);
