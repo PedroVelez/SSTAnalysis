@@ -11,10 +11,10 @@ lon_min=333.1250; lon_max=354.8750;
 
 [Ynow,Mnow,Dnow]=datevec(now);
 AnhoI=1982;
-AnhoF=2020;
+AnhoF=2021;
 
 %% inicio
-DirData='/Users/pvb/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres';
+DirData='/home/argo/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres';
 FileNameInforme=strcat(DirData,'/InformeActualizaData');
 
 %Nombre del fichero vigente
