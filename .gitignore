@@ -1,5 +1,6 @@
 *.nc
 log/*
+images/*
 data/report*
 data/*.mat
 .AppleDouble

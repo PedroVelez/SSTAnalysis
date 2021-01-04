@@ -278,7 +278,7 @@ for NumDatSet = [1 2]
     contour(CATimed1980,uY2,aMEstSSTHM_d2,[1 1],'k','linewidth',2);hold on;grid on
     contour(CATimed1980,uY2,aMEstSSTHM_d2,[-1 -1],'k--','linewidth',2);hold on;grid on
     
-    %Ultimo dia con datos [no lo hafce el ultimo dia del año.]
+    %Ultimo dia con datos [no lo hace el ultimo dia del año.]
     if ~isempty(find(isnan(aMEstSSTHM_d(end,:)),1))
         plot(CATimed1980(find(isnan(aMEstSSTHM_d(end,:)),1)-1),uY(end),'o')
     end
@@ -291,7 +291,10 @@ for NumDatSet = [1 2]
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
     
-    InformeHovMollerDiario=sprintf('Diagrama de anomalias de temperatura diarias.\n Periodo de referencia (%4d-%4d). %s',uY(1),uY(end-1),datestr(datestr(max(Timed)),'dd.mmmm'));
+    InformeHovMollerDiario=sprintf('Diagrama de anomalias de temperatura diarias.\n Periodo de referencia para las anomalias (%4d-%4d).\n Actualizad %s.', ... 
+        uY(1), ... 
+        uY(end-1), ... 
+        datestr(datestr(max(Timed)),'dd mmmm'));
     title(InformeHovMollerDiario)
     
     axis([-inf inf 1980 2020])
