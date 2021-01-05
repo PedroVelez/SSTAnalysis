@@ -22,7 +22,7 @@ DirFigures=strcat(GlobalSU.ProPath,'/SSTWebpage');
 
 DirHTML='/html/pedro/images';
 
-FuenteDatos=sprintf('Elaborado por el Instituto Espanol de Oceanogafia\n a partir de datos de https://www.ncdc.noaa.gov/oisst');
+FuenteDatos=sprintf('Elaborado por el Instituto Espanol de Oceanografia\n a partir de datos de https://www.ncdc.noaa.gov/oisst');
 
 NAnosR=4; %years to represent
 
