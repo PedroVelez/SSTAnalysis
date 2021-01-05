@@ -155,7 +155,7 @@ for NumDatSet = [1 2]
     plot([datenum(2000,MMdSST,MDdSST) datenum(2000,MMdSST,MDdSST)],[TemperatureLimts(1) Y(end)],'k--','linewidth',1)
     plot([X(1) X(end)],[Y(end) Y(end)],'k--','linewidth',1)
     
-    InformeDia=sprintf('Temperatura %s: %4.2fºC [%s]. \n %s-%s. Media %s: %4.2fºC. Desviacion standart: %04.2fºC. Anomalia %4.2fºC.', ...
+    InformeDia=sprintf('Temperatura %s: %4.2f C [%s]. \n %s-%s. Media %s: %4.2f C. Desviacion standart: %04.2f C. Anomalia %4.2f C.', ...
         datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm yyyy'), ...
         Y(end), ...
         DataFile, ...
@@ -209,20 +209,20 @@ for NumDatSet = [1 2]
     box on
     text(datenum(uY(end)-9,01,12),MeanSSTMesSelecionado-3*StdSSTMesSelecionado+0.25,FuenteDatos,'HorizontalAlignment','center')
     
-    InformeMes1=sprintf('Temperatura media en %s %s: %4.2fºC [%s].\n',...
+    InformeMes1=sprintf('Temperatura media en %s %s: %4.2f C [%s].\n',...
         TMesSelecionado,...
         datestr(TimeMesSelecionado(end),'yyyy'),...
         SSTMesSelecionado(end), ...
         DataFile);
     InformeMes2=sprintf('(%s-%s): ', ...
         datestr(min(TimeMesSelecionado),'yyyy'),datestr(max(TimeMesSelecionado),'yyyy'));
-    InformeMes3=sprintf('Temperatura media en %s: %4.2fºC, desviacion standart: %04.2fºC.\n', ...
+    InformeMes3=sprintf('Temperatura media en %s: %4.2f C, desviacion standart: %04.2f C.\n', ...
         TMesSelecionado,...
         MeanSSTMesSelecionado,StdSSTMesSelecionado);
-    InformeMes4=sprintf('Temperatura máxima [%s]: %4.2fºC. ', ...
+    InformeMes4=sprintf('Temperatura máxima [%s]: %4.2f C. ', ...
         datestr(MaxTimeMesSelecionado,'mmmm yyyy'),...
         MaxSSTMesSelecionado);
-    InformeMes5=sprintf('Temperatura mínima [%s]: %4.2fºC.', ...
+    InformeMes5=sprintf('Temperatura mínima [%s]: %4.2f C.', ...
         datestr(MinTimeMesSelecionado,'mmmm yyyy'),...
         MinSSTMesSelecionado);
     InformeMes=sprintf('%s',InformeMes1,InformeMes2,InformeMes3,InformeMes4,InformeMes5);
@@ -237,7 +237,7 @@ for NumDatSet = [1 2]
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
     
     %% Diagrama de Hovmoller
-    %Ano sintentico en 1980
+    % Ano sintentico en 1980
     CATimed1980=datenum(1980,1,1,12,0,0):1:datenum(1980,1,1,0,0,0)+365;
     for iY=1:length(uY)
         %cojo los datos de ese a?o
@@ -261,18 +261,12 @@ for NumDatSet = [1 2]
         aMEstSSTHM_d(iY,:)=MEstSSTHM_d(iY,:)-MMEstSSTHMd;
     end
     
-    %Diagrama HM de SST diaria
-    figure
-    contourf(CATimed1980,uY,MEstSSTHM_d,40,'edgecolor','none')
-    colorbar
-    datetick
-    
-    %Diagrama HM de anomalia SST diaria
+    % Diagrama HM de anomalia SST diaria
     figure
     aMEstSSTHM_d(aMEstSSTHM_d>2)=2;
     aMEstSSTHM_d(aMEstSSTHM_d<-2)=-2;
+
     %Replico la ultima fila
-    
     aMEstSSTHM_d2=aMEstSSTHM_d;
     uY2=uY;
     aMEstSSTHM_d2(length(uY)+1,:)=aMEstSSTHM_d(length(uY),:);
@@ -286,10 +280,16 @@ for NumDatSet = [1 2]
         plot(CATimed1980(find(isnan(aMEstSSTHM_d(end,:)),1)-1),uY(end),'o')
     end
     
-    colormap(jet)
+    colormap(cmocean('balance') )
     colorbar
     caxis([-2 2])
-    set(gca,'Ytick',[1980 1985 1986 1990 1995 1997 2000 2003 2004 2005 2010 2012 2014 2016 2019 uY(end)])
+    axis([-inf inf 1981 uY(end)+1])
+    
+    Yticks=1981:4:uY(end);
+    if Yticks(end)~=uY(end)
+        Yticks=[Yticks uY(end)];
+    end
+    set(gca,'Ytick',Yticks)
     set(gca,'Xtick',[datenum(1980,2,1) datenum(1980,5,1) datenum(1980,8,1) datenum(1980,11,1)])
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
@@ -301,7 +301,7 @@ for NumDatSet = [1 2]
         uY(end-1));
     title(InformeHovMollerDiario)
     
-    axis([-inf inf 1981 uY(end)])
+    
     
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
     ftpobj=FtpOceanografia;
