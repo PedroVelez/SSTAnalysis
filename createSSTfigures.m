@@ -115,19 +115,19 @@ for NumDatSet = [1 2]
         fprintf('  Media Temperatura %s    %4.2f, anomalia: %5.2f\n',datestr(datenum(uY(iY),MesSelecionado,1),'mmmm.yy'),SSTMesSelecionado(iY),SSTMesSelecionado(iY)-MeanSSTMesSelecionado)
     end
     
-    
     %% figuras
     %Ciclo anual
     figure
     Xt=[CATimed2000-366 CATimed2000 CATimed2000+366];
     Ym=[CAMSSTa2000      CAMSSTa2000 CAMSSTa2000];
     Ys=[CASSSTa2000      CASSSTa2000 CASSSTa2000];
-    %Desciacion estandasr
+    %Desviacion estandasr
     patch([Xt fliplr(Xt) Xt(1) ],[Ym+2*Ys fliplr(Ym-2*Ys) Ym(1)+2*Ys(1)],[0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on
+    
     %media
     plot(Xt,Ym,'color',[0.5 0.5 0.5],'linewidth',3);hold on;grid on
     
-    %Pinto solo los ultimos a?os de datos.
+    %Pinto solo los ultimos NAnosR años de datos.
     Canhos=cbrewer('seq','YlGnBu',NAnosR);
     AnosR=uY(end-(NAnosR-1):end)';
     ic=0;
@@ -156,9 +156,10 @@ for NumDatSet = [1 2]
     plot([datenum(2000,MMdSST,MDdSST) datenum(2000,MMdSST,MDdSST)],[TemperatureLimts(1) Y(end)],'k--','linewidth',1)
     plot([X(1) X(end)],[Y(end) Y(end)],'k--','linewidth',1)
     
-    InformeDia=sprintf('Temperatura %s: %4.2f C. \n Periodo de referencia %s-%s.\n Media en este dia: %4.2f C. Std en este dia: %04.2f C. Anomalia %4.2f C.', ...
-        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm'), ...
+    InformeDia=sprintf('Temperatura %s: %4.2f C [%s]. \n Periodo de referencia %s-%s.\n Media en este dia: %4.2f C. Std en este dia: %04.2f C. Anomalia %4.2f C.', ...
+        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm yyyy'), ...
         Y(end), ...
+        DataFile, ...
         datestr(min(TimeMesSelecionado),'yyyy'), ...
         datestr(max(TimeMesSelecionado),'yyyy'), ...
         Ym(Xt==datenum(2000,MMdSST,MDdSST)), ...
@@ -177,13 +178,13 @@ for NumDatSet = [1 2]
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
     box on
-    
-    
+    text(datenum(2000,10,01),TemperatureLimts(1)+0.5,FuenteDatos,'HorizontalAlignment','center')
+
     CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
-    %Ftp the file
     
+    %Ftp the file
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/pedro/images');
+    cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoCicloEstacional);
     close(ftpobj)
     
@@ -206,11 +207,14 @@ for NumDatSet = [1 2]
     set(gca,'Xtick',fliplr(datenum(uY(end):-5:uY(1),MesSelecionado,15)))
     datetick('x','yyyy','keeplimits','keepticks')
     box on
-    
-    InformeMes1=sprintf('Temperatura media en %s %s: %4.2f C. \n',...
+    text(datenum(uY(end)-8,01,12),MeanSSTMesSelecionado-3*StdSSTMesSelecionado+0.25,FuenteDatos,'HorizontalAlignment','center')
+
+        
+    InformeMes1=sprintf('Temperatura media en %s %s: %4.2f C [%s]. \n',...
         TMesSelecionado,...
         datestr(TimeMesSelecionado(end),'yyyy'),...
-        SSTMesSelecionado(end));
+        SSTMesSelecionado(end), ...
+        DataFile);
     InformeMes2=sprintf('Datos en el periodo de referencia (%s-%s):\n', ...
         datestr(min(TimeMesSelecionado),'yyyy'),datestr(max(TimeMesSelecionado),'yyyy'));
     InformeMes3=sprintf('Temperatura media en %s: %4.2f C, con desviacion standart: %04.2f C.\n', ...
@@ -228,7 +232,7 @@ for NumDatSet = [1 2]
     CreaFigura(gcf,FicheroGraficoMes,[4])
     
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/pedro/images');
+    cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoMes);
     close(ftpobj)
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
@@ -291,21 +295,21 @@ for NumDatSet = [1 2]
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
     
-    InformeHovMollerDiario=sprintf('Diagrama de anomalias de temperatura diarias.\n Periodo de referencia para las anomalias (%4d-%4d).\n Actualizad %s.', ... 
-        uY(1), ... 
-        uY(end-1), ... 
-        datestr(datestr(max(Timed)),'dd mmmm'));
+    InformeHovMollerDiario=sprintf('Diagrama de anomalias de temperatura diarias [%s].\n Periodo de referencia para las anomalias (%4d-%4d).\n Actualizado %s.', ...
+          DataFile, ...
+          uY(1), ...
+        uY(end-1), ...
+        datestr(datestr(max(Timed)),'dd mmmm yyyy'));
     title(InformeHovMollerDiario)
     
     axis([-inf inf 1980 2020])
     
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/pedro/images');
+    cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoHMDiario);
     close(ftpobj)
     
-    
-    %% Save Reports
+    % Save Reports
     save(FileNameInforme,'InformeMes','InformeDia');
 end

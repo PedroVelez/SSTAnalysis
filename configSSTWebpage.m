@@ -1,5 +1,9 @@
 load Globales
 
+FuenteDatos=sprintf('Elaboracion Instituto Español de Oceanografía\n a partir de datos de https://www.ncdc.noaa.gov/oisst');
+
+DirHTML='/html/pedro/images';
+
 DirDataSST=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
 FileDataSST=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean');
 

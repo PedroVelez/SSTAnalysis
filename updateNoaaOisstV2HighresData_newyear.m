@@ -14,7 +14,11 @@ AnhoI=1982;
 AnhoF=2021;
 
 %% inicio
-DirData='/home/argo/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres';
+
+%Read options
+configSSTWebpage
+
+DirData=DirDataSST;
 FileNameInforme=strcat(DirData,'/InformeActualizaData');
 
 %Nombre del fichero vigente

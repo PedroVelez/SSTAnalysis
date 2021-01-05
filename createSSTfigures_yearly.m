@@ -56,7 +56,6 @@ for NumDatSet = [1 2]
     MEstacionesSSTanualM=nanmean(SSTanualM(Estaciones,:));
     StdEstacionesSSTanualM=nanstd(MEstacionesSSTanualM);
     
-    
     %% Calculo los promediosanuales hasta hoy
     %Bucle sobre todas las estaciones con datos
     for iEs=1:size(DSST.sstd,1)
@@ -109,7 +108,12 @@ for NumDatSet = [1 2]
     grid on
     box on
     
-    InformeAnho1=sprintf('Temperatura media en %s: %4.2f C.\n',datestr(TimeAnualHoy(end),'yyyy'),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy);
+    text(datenum(uY(end)-8,01,12),TempLimits(1)+0.25,FuenteDatos,'HorizontalAlignment','center')
+    
+    InformeAnho1=sprintf('Temperatura media en %s: %4.2f C [%s].\n', ... 
+        datestr(TimeAnualHoy(end),'yyyy'), ... 
+        MEstacionesSSTanualHoyM(end)+OffSetDiaHoy, ...
+        DataFile);
     
     InformeAnho2=sprintf('Datos en el periodo %s-%s:\n', ...
         datestr(nanmin(TimeAnual),'yyyy'),datestr(nanmax(TimeAnual),'yyyy'));
