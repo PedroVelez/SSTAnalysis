@@ -11,19 +11,12 @@ close all;clear all;clc
 %
 %Original source NCEI at ftp://eclipse.ncdc.noaa.gov/pub/OI-daily-v2/.
 
-NameRegion='CCLME';
-
-lat_min=5.1250; lat_max=44.8750;
-lon_min=333.1250; lon_max=354.8750;
-
-[Ynow,Mnow,Dnow]=datevec(now);
-AnhoI=1982;
-AnhoF=2021;
-
 %% Begin
 fprintf('>>>>> %s\n',mfilename)
 %Read options
 configSSTWebpage
+
+[Ynow,Mnow,Dnow]=datevec(now);
 
 %File report name
 FileNameReport=strcat(DirDataSST,'/reportUpdateData');

@@ -16,10 +16,7 @@ for NumDatSet = [1 2]
         TemperatureLimts=[17 26];
     end
     
-    FileNameInforme=strcat(DirFigures,'/data/reportYearly',DataFile);
-    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual', ... 
-        sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
-    
+
     DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
@@ -30,6 +27,14 @@ for NumDatSet = [1 2]
     %Fecha del valor ultimo
     [MYdSST,MMdSST,MDdSST]=datevec(max(Timed));
     
+    FileNameInforme=strcat(DirFigures,'/data/reportYearly',DataFile);
+    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual', ... 
+        sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
+    
+    FicheroGraficoAnoNombre=strcat('./images/Graficos',DataFile,'_Anual', ... 
+        sprintf('_Seccion%02d_%02d_%s_%4d.png',min(Estaciones),max(Estaciones), ...
+        MesesEspanol(MMdSST),MYdSST));
+
     
     %% Calculo los promediosanuales anos completos
     % Bucle sobre todas las estaciones con datos
@@ -115,23 +120,24 @@ for NumDatSet = [1 2]
         MEstacionesSSTanualHoyM(end)+OffSetDiaHoy, ...
         DataFile);
     
-    InformeAnho2=sprintf('Datos en el periodo %s-%s:\n', ...
+    InformeAnho2=sprintf('%s-%s: ', ...
         datestr(nanmin(TimeAnual),'yyyy'),datestr(nanmax(TimeAnual),'yyyy'));
     
     InformeAnho3=sprintf('Temperatura media: %4.2f C,desviacion standart: %04.2f C.\n', ...
         nanmean(MEstacionesSSTanualM(1:end-1)), ...
         nanstd(MEstacionesSSTanualM(1:end-1)));
-    InformeAnho4=sprintf('La temperatura máxima anual ocurrio en %s y fue de %4.2f C.\n',...
+    InformeAnho4=sprintf('Temperatura máxima [%s]:%4.2f C. ',...
         datestr(TimeAnual(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),'yyyy'), ...
         MEstacionesSSTanualM(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)));
     
-    InformeAnho5=sprintf('La temperatura mínima anual ocurrio en %s y fue de %4.2f C.\n',...
+    InformeAnho5=sprintf('Temperatura mínima [%s]:%4.2f C.',...
         datestr(TimeAnual(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),'yyyy'), ...
         MEstacionesSSTanualM(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)));
     InformeAnho=sprintf('%s',InformeAnho1,InformeAnho2,InformeAnho3,InformeAnho4,InformeAnho5);
     title(InformeAnho)
     
     CreaFigura(gcf,FicheroGraficoAno,[4])
+    CreaFigura(gcf,FicheroGraficoAnoNombre,[4])
     
     %Ftp the file
     ftpobj=FtpOceanografia;
