@@ -8,7 +8,7 @@ lon_min=333.1250; lon_max=354.8750;
 
 %Time period
 AnhoI=1982;
-AnhoF=2020;
+AnhoF=2021;
 
 %Data files
 DirDataSST=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
