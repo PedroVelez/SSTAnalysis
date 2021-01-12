@@ -5,7 +5,6 @@ configSSTWebpage
 
 %% Inicio
 for NumDatSet = [1 2]
-    
     if NumDatSet==1
         DataFile='SSTRaprocan';
         Estaciones=[11:1:22]; %Oceanicas
@@ -15,7 +14,7 @@ for NumDatSet = [1 2]
         Estaciones=[1:2];
         TemperatureLimts=[17 26];
     end
-
+    
     DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
@@ -23,17 +22,17 @@ for NumDatSet = [1 2]
     %Fehas en formato Vec
     [YdSST,MdSST,DdSST]=datevec(Timed);
     uY=unique(YdSST);
+    
     %Fecha del valor ultimo
     [MYdSST,MMdSST,MDdSST]=datevec(max(Timed));
     
     FileNameInforme=strcat(DirFigures,'/data/reportYearly',DataFile);
-    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual', ... 
+    FicheroGraficoAno=strcat('./images/Graficos',DataFile,'_Anual', ...
         sprintf('_Seccion%02d_%02d.png',min(Estaciones),max(Estaciones)));
     
-    FicheroGraficoAnoNombre=strcat('./images/Graficos',DataFile,'_Anual', ... 
+    FicheroGraficoAnoNombre=strcat('./images/Graficos',DataFile,'_Anual', ...
         sprintf('_Seccion%02d_%02d_%s_%4d.png',min(Estaciones),max(Estaciones), ...
         MesesEspanol(MMdSST),MYdSST));
-
     
     %% Calculo los promediosanuales anos completos
     % Bucle sobre todas las estaciones con datos
@@ -83,39 +82,50 @@ for NumDatSet = [1 2]
     
     %% Figuras
     figure
+    %Limites
+    %TempLimits=extrem([MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM]);
+    TempLimits=[nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM];
+    
     %Desviacion standart
     patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)], ...
-        [nanmean(MEstacionesSSTanualM(1:end-1))-1*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))-1*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+1*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+1*StdEstacionesSSTanualM], ...
-        [0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on
+        [nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM], ...
+        [0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on;alpha(0.6)
     
-    %Limites
-    TempLimits=extrem([MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy]);
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)], ...
+        [nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM], ...
+        'color',[0.95 0.95 0.95],'linewidth',2);
     
-    % Plot de los datos promedio anuales  y el promeido del utlimo ano corregido
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)], ...
+        [nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM], ...
+        'color',[0.95 0.95 0.95],'linewidth',2);
+    
+    %Linea con la media
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)],[nanmean(MEstacionesSSTanualM(1:end-1)) nanmean(MEstacionesSSTanualM(1:end-1))],'-','color',[0.5 0.5 0.5],'linewidth',3)
+
+    %Plot de los datos promedio anuales  y el promeido del ano en curso corregido
     plot([TimeAnual(1:end-1) TimeAnualHoy(end)],[MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'ko-','MarkerFacecolor','k','Markersize',5); hold on
     plot(TimeAnualHoy(end),MEstacionesSSTanualHoyM(end)+OffSetDiaHoy,'o','MarkerFacecolor','c','Markersize',8); hold on
-    
-    %linea con la media
-    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)],[nanmean(MEstacionesSSTanualM(1:end-1)) nanmean(MEstacionesSSTanualM(1:end-1))],'-','color',[0.5 0.5 0.5],'linewidth',3)
     
     %Lineas para el ultimo dato
     plot([TimeAnual(1) TimeAnualHoy(end-1)],[MEstacionesSSTanualHoyM(end)+OffSetDiaHoy MEstacionesSSTanualHoyM(end)+OffSetDiaHoy],'k--')
     plot([TimeAnualHoy(end) TimeAnualHoy(end)],[MEstacionesSSTanualHoyM(end)+OffSetDiaHoy TempLimits(1)],'k--')
     
-    %Valsor dato maximo
+    %Valor dato maximo
     plot(TimeAnual(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmax(MEstacionesSSTanualM)),'sr','Markersize',10,'MarkerFaceColor','r');
     
     %Valor dato minimo
     plot(TimeAnual(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),MEstacionesSSTanualM(MEstacionesSSTanualM==nanmin(MEstacionesSSTanualM)),'sb','Markersize',10,'MarkerFaceColor','b');
+    
     axis([datenum(uY(1),1,1) datenum(uY(end),12,31) TempLimits])
     datetick('x','yyyy','keeplimits','keepticks')
-    grid on
     box on
     
+    %Crédito
     text(datenum(uY(end)-9,01,12),TempLimits(1)+0.15,FuenteDatos,'HorizontalAlignment','center')
     
-    InformeAnho1=sprintf('Temperatura media en %s: %4.2f C [%s].\n', ... 
-        datestr(TimeAnualHoy(end),'yyyy'), ... 
+    %Titulo
+    InformeAnho1=sprintf('Temperatura media en %s: %4.2f C [%s].\n', ...
+        datestr(TimeAnualHoy(end),'yyyy'), ...
         MEstacionesSSTanualHoyM(end)+OffSetDiaHoy, ...
         DataFile);
     
@@ -142,8 +152,8 @@ for NumDatSet = [1 2]
     ftpobj=FtpOceanografia;
     cd(ftpobj,'/html/pedro/images');
     mput(ftpobj,FicheroGraficoAno);
+    mput(ftpobj,FicheroGraficoAnoNombre);
     close(ftpobj)
     
     save(FileNameInforme,'InformeAnho');
 end
-

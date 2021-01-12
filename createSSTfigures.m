@@ -118,8 +118,8 @@ for NumDatSet = [1 2]
     %Ciclo anual
     figure
     Xt=[CATimed2000-366 CATimed2000 CATimed2000+366];
-    Ym=[CAMSSTa2000      CAMSSTa2000 CAMSSTa2000];
-    Ys=[CASSSTa2000      CASSSTa2000 CASSSTa2000];
+    Ym=[CAMSSTa2000     CAMSSTa2000 CAMSSTa2000];
+    Ys=[CASSSTa2000     CASSSTa2000 CASSSTa2000];
     %Desviacion estandasr
     patch([Xt fliplr(Xt) Xt(1) ],[Ym+2*Ys fliplr(Ym-2*Ys) Ym(1)+2*Ys(1)],[0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on
     
@@ -189,21 +189,38 @@ for NumDatSet = [1 2]
     close(ftpobj)
     
     
-    
     %% Figura del mes seleccion
     figure
-    patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)],[MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado],[0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on
-    plot(TimeMesSelecionado,SSTMesSelecionado,'ko-','MarkerFacecolor','k','Markersize',5);hold on
     
+    %Limites
+    TempLimits=[MeanSSTMesSelecionado-3*StdSSTMesSelecionado  MeanSSTMesSelecionado+3*StdSSTMesSelecionado];
+
+    %desviacion standart
+    patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)], ... 
+        [MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado], ... 
+        [0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on;alpha(0.6)
+    
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)], ...
+    [MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado-2*StdSSTMesSelecionado], ...
+        'color',[0.95 0.95 0.95],'linewidth',2);
+
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31)], ...
+    [MeanSSTMesSelecionado+2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado], ...
+        'color',[0.95 0.95 0.95],'linewidth',2);
+    
+    %Promedio
+    plot([datenum(uY(1),1,1) datenum(uY(end),12,31) ],[MeanSSTMesSelecionado MeanSSTMesSelecionado],'-','color',[0.5 0.5 0.5],'linewidth',3)
+
+    %Evolucion
+    plot(TimeMesSelecionado,SSTMesSelecionado,'ko-','MarkerFacecolor','k','Markersize',5);hold on
     plot([TimeMesSelecionado(1) TimeMesSelecionado(end)],[SSTMesSelecionado(end) SSTMesSelecionado(end)],'k--')
     plot([TimeMesSelecionado(end) TimeMesSelecionado(end)],[SSTMesSelecionado(end) MeanSSTMesSelecionado-3*StdSSTMesSelecionado],'k--')
-    
     plot(TimeMesSelecionado(end),SSTMesSelecionado(end),'ko-','MarkerFacecolor','c','MarkerEdgecolor','c','Markersize',9);hold on
     plot(MaxTimeMesSelecionado,MaxSSTMesSelecionado,'sr','Markersize',10,'MarkerFaceColor','r');hold on
     plot(MinTimeMesSelecionado,MinSSTMesSelecionado,'sb','Markersize',10,'MarkerFaceColor','b');hold on
     
-    plot([datenum(uY(1),1,1) datenum(uY(end),12,31) ],[MeanSSTMesSelecionado MeanSSTMesSelecionado],'-','color',[0.5 0.5 0.5],'linewidth',3)
-    axis([datenum(uY(1),1,1) datenum(uY(end),12,31) MeanSSTMesSelecionado-3*StdSSTMesSelecionado  MeanSSTMesSelecionado+3*StdSSTMesSelecionado])
+
+    axis([datenum(uY(1),1,1) datenum(uY(end),12,31) TempLimits])
     set(gca,'Xtick',fliplr(datenum(uY(end):-5:uY(1),MesSelecionado,15)))
     datetick('x','yyyy','keeplimits','keepticks')
     box on
@@ -233,6 +250,7 @@ for NumDatSet = [1 2]
     ftpobj=FtpOceanografia;
     cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoMes);
+    mput(ftpobj,FicheroGraficoMesNombre);
     close(ftpobj)
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
     
@@ -300,8 +318,6 @@ for NumDatSet = [1 2]
         uY(1), ...
         uY(end-1));
     title(InformeHovMollerDiario)
-    
-    
     
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
     ftpobj=FtpOceanografia;
