@@ -246,6 +246,7 @@ for NumDatSet = [1 2]
     title(InformeMes)
     
     CreaFigura(gcf,FicheroGraficoMes,[4])
+    CreaFigura(gcf,FicheroGraficoMesNombre,[4])
     
     ftpobj=FtpOceanografia;
     cd(ftpobj,DirHTML);

@@ -15,7 +15,7 @@ then
 fi
 if [[ $strval == *vibrio* ]];
 then
-  MatVersion=/home/argo/Matlab/bin/matlab
+  MatVersion=/home/pvb/Matlab/bin/matlab
 fi
 
 #------------------------------------
@@ -95,4 +95,5 @@ fi
 #------------------------------------
 URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
 MENSAJE=`cat $HOME/Dropbox/Oceanografia/Proyectos/SSTWebpage/data/report.txt`
-curl -s -X POST $URL -d chat_id=$ArgoEsBotID -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log 
+curl -s -X POST $URL -d chat_id=$ArgoEsChannel -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log
+
