@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/.bashrc
+source $HOME/.telegram
 
 Verbose=0
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
