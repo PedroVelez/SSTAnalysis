@@ -4,14 +4,17 @@ clc;clear all;close all
 configSSTWebpage
 
 %% Inicio
-for NumDatSet = [1 2]
-    
+for NumDatSet = [1 2]   
     if NumDatSet==1
         DataFile='SSTRaprocan';
         Estaciones=[11:1:22]; %Oceanicas
         TemperatureLimts=[17 26];
     elseif NumDatSet==2
         DataFile='SSTNorteTenerife';
+        Estaciones=[1:2];
+        TemperatureLimts=[17 26];
+    elseif NumDatSet==3
+        DataFile='SSTLasPalmas';
         Estaciones=[1:2];
         TemperatureLimts=[17 26];
     end

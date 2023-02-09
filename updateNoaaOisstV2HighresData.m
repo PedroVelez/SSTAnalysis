@@ -45,7 +45,7 @@ if ~isempty(FilesLocal)
     DiaMaxWeb=max(ttime);
     [YnMaxWeb,MMaxWeb,DMaxWeb]=datevec(DiaMaxWeb);
     fprintf('     >Data web %s, local data %s\n',datestr(DiaMaxWeb),datestr(LastLocalDay))
-    
+
     %Update data is downloaded data is newer
     if DiaMaxWeb>LastLocalDay
         Report=sprintf('     >Updating data until %s \n',datestr(DiaMaxWeb));disp(Report)

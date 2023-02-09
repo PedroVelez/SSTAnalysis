@@ -13,6 +13,10 @@ for NumDatSet = [1 2]
         DataFile='SSTNorteTenerife';
         Estaciones=[1:2];
         TemperatureLimts=[17 26];
+    elseif NumDatSet==3
+        DataFile='SSTLasPalmas';
+        Estaciones=[1:2];
+        TemperatureLimts=[17 26];
     end
     
     DSST=load(strcat('./data/',DataFile));

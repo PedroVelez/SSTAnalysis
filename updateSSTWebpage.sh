@@ -4,7 +4,7 @@ source $HOME/.telegram
 Verbose=0
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
-PaginaWebDir=$HOME/Dropbox/Oceanografia/Proyectos/SSTWebpage
+PaginaWebDir=$HOME/Proyectos/SSTWebpage
 DirLog=$PaginaWebDir/log
 
 
@@ -16,6 +16,10 @@ fi
 if [[ $strval == *vibrio* ]];
 then
   MatVersion=/home/pvb/Matlab/bin/matlab
+fi
+if [[ $strval == *rossby* ]];
+then
+  MatVersion=/usr/bin/matlab
 fi
 
 #------------------------------------
@@ -94,6 +98,6 @@ fi
 # i TelegramBot
 #------------------------------------
 URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
-MENSAJE=`cat $HOME/Dropbox/Oceanografia/Proyectos/SSTWebpage/data/report.txt`
+MENSAJE=`cat $HOME/Proyectos/SSTWebpage/data/report.txt`
 curl -s -X POST $URL -d chat_id=$ArgoEsChannel -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log
 

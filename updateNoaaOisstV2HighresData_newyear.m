@@ -11,7 +11,7 @@ lon_min=333.1250; lon_max=354.8750;
 
 [Ynow,Mnow,Dnow]=datevec(now);
 AnhoI=1982;
-AnhoF=2021;
+AnhoF=2022;
 
 %% inicio
 
