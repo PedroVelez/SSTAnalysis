@@ -26,6 +26,7 @@ FileThisYear=strcat('sst.day.mean.',num2str(AnhoF),'.nc');
 ftpobj = ftp('ftp.cdc.noaa.gov');
 cd(ftpobj,'Datasets/noaa.oisst.v2.highres/');
 mget(ftpobj,FileThisYear,DirDataSST);
+mget(ftpobj,FileThisYear,DirDataSSTNC);
 
 %Name of the local files
 FilesLocal=dir(strcat(DirDataSST,'/*NOAAOisstv2HighresSstDayMean*',num2str(AnhoF),'*'));

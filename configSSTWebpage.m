@@ -11,6 +11,7 @@ AnhoF=2023;
 
 %Data files
 DirDataSST=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
+DirDataSSTNC=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
 FileDataSST=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean');
 
 %Stations foles
