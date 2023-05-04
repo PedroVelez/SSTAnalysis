@@ -13,10 +13,6 @@ if [[ $strval == *Okapi* ]];
 then
   MatVersion=/Applications/MATLAB_R2019b.app/bin/matlab
 fi
-if [[ $strval == *vibrio* ]];
-then
-  MatVersion=/home/pvb/Matlab/bin/matlab
-fi
 if [[ $strval == *rossby* ]];
 then
   MatVersion=/usr/bin/matlab
