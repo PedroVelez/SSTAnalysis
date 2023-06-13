@@ -30,14 +30,13 @@ DataSet(2).name='NorteTenerife';
 DataSet(2).Estaciones=[1:1:2];
 DataSet(2).TemperatureLimts=[17 26];
 
-DataSet(end+1).name='Vigo';
+DataSet(3).name='Gijon';
+DataSet(3).Estaciones=[1:1:2];
+DataSet(3).TemperatureLimts=[11 24];
+
+DataSet(4).name='Vigo';
 DataSet(end+1).Estaciones=[1:1:2];
 DataSet(end+1).TemperatureLimts=[11 22];
-
-
-DataSet(end+1).name='Gijon';
-DataSet(end+1).Estaciones=[1:1:2];
-DataSet(end+1).TemperatureLimts=[11 24];
 
 DataSet(end+1).name='Santander';
 DataSet(end+1).Estaciones=[1:1:2];
@@ -47,14 +46,13 @@ DataSet(end+1).name='Cadiz';
 DataSet(end+1).Estaciones=[1:1:2];
 DataSet(end+1).TemperatureLimts=[16 25];
 
-DataSet(end+1).name='Malaga';
-DataSet(end+1).Estaciones=[1:1:2];
-DataSet(end+1).TemperatureLimts=[16 25];
-
 DataSet(end+1).name='Palma';
 DataSet(end+1).Estaciones=[1:1:2];
 DataSet(end+1).TemperatureLimts=[16 25];
 
+DataSet(end+1).name='Malaga';
+DataSet(end+1).Estaciones=[1:1:2];
+DataSet(end+1).TemperatureLimts=[16 25];
 
 %Directorios
 DirFigures=strcat(GlobalSU.AnaPath,'/SSTWebpage');
