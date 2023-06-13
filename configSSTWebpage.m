@@ -30,13 +30,13 @@ DataSet(2).name='NorteTenerife';
 DataSet(2).Estaciones=[1:1:2];
 DataSet(2).TemperatureLimts=[17 26];
 
-DataSet(4).name='Gijon';
+DataSet(3).name='Gijon';
+DataSet(3).Estaciones=[1:1:2];
+DataSet(3).TemperatureLimts=[11 24];
+
+DataSet(4).name='Vigo';
 DataSet(4).Estaciones=[1:1:2];
 DataSet(4).TemperatureLimts=[11 24];
-
-DataSet(5).name='Vigo';
-DataSet(5).Estaciones=[1:1:2];
-DataSet(5).TemperatureLimts=[11 24];
 
 DataSet(5).name='Santander';
 DataSet(5).Estaciones=[1:1:2];
