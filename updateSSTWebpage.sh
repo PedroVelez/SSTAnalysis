@@ -50,9 +50,9 @@ fi
 printf "Updating SST\n"
 if [ $Verbose == 1 ]
 then
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSST;exit'
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTData;exit'
 else
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSST;exit' > $DirLog/createSSTNorteTenerife.log
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTData;exit' > $DirLog/createSSTNorteTenerife.log
 fi
 
 
