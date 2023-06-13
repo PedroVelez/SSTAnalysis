@@ -52,8 +52,8 @@
            [1,'',36.15,-6.71,'Cadiz','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
            [1,'',36.53,-3.47,'Malaga','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
            [1,'',36.53,-3.47,'Malaga','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
+           [1,'',39.34,2.43,'Palma','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
+           [1,'',39.34,2.43,'Palma','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
 		];
 for (var i = 0; i < estaciones.length; i++) {
 		var estacion = estaciones[i];
@@ -64,7 +64,7 @@ for (var i = 0; i < estaciones.length; i++) {
             title: estacion[4]+estacion[1]+' '+estacion[5],
             opacity: 1,
             fillOpacity:.45,
-            fillColor:estacion[8]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/pedro/SST'+estacion[4]+'.html" target="_blank">'+estacion[4]+'</a></b><br><b>Last profile&nbsp;</b>'+estacion[5]+'</p></center>');
+            fillColor:estacion[8]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/pedro/SST'+estacion[4]+'.html" target="_blank">'+estacion[4]+'</a></b><br><b>Ultimo datos&nbsp;</b>'+estacion[5]+'</p></center>');
 		}else if (estacion[0] == 0) {
 			L.marker([estacion[2], estacion[3]],{
 			icon: marcador0,

@@ -84,16 +84,15 @@ for ir=2:1:length(DataSet)
     fprintf('Interpolating data into %s section (%d/%d): ',DataSet(ir).name,ir,length(DataSet))
     DataFile=strcat('SST',DataSet(ir).name);
     Estaciones=DataSet(ir).Estaciones;
-    data=load(strcat(GlobalSU.AnaPath,'/SSTWebpage/data/Estaciones',DataSet(ir).name,'.txt'));
-    loneR=data(:,1)';
-    lateR=data(:,2)';
-
+    data=load(strcat(GlobalSU.AnaPath,'/SSTWebpage/data/SST',DataSet(ir).name,'.mat'));
+    
+    loneR=data.loneR;
+    lateR=data.lateR;
     for ie=Estaciones
         NombreRadial=DataSet(ir).name;
         NombreEstacion=char((ie));
-                 %SurfaceValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iSV),tems(np,iSV),sals(np,iSV));
-         %BottonValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iBV),tems(np,iBV),sals(np,iBV));
-
+        %SurfaceValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iSV),tems(np,iSV),sals(np,iSV));
+        %BottonValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iBV),tems(np,iBV),sals(np,iBV));
          fprintf(fid,'           [1,''%s'',%4.2f,%4.2f,''%s'',''%s'',''%s'',''%s'',''%s''], \n', NombreEstacion,lateR(ie),loneR(ie),NombreRadial,'14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff');
 
     end
@@ -111,7 +110,7 @@ fprintf(fid,'            color  : estacion[8],\n');
 fprintf(fid,'            title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
 fprintf(fid,'            opacity: 1,\n');  
 fprintf(fid,'            fillOpacity:.45,\n');  
-fprintf(fid,'            fillColor:estacion[8]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/pedro/SST''+estacion[4]+''.html" target="_blank">''+estacion[4]+''</a></b><br><b>Last profile&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
+fprintf(fid,'            fillColor:estacion[8]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/pedro/SST''+estacion[4]+''.html" target="_blank">''+estacion[4]+''</a></b><br><b>Ultimo datos&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
 fprintf(fid,'		}else if (estacion[0] == 0) {\n');  
 fprintf(fid,'			L.marker([estacion[2], estacion[3]],{\n');  
 fprintf(fid,'			icon: marcador0,\n');  
