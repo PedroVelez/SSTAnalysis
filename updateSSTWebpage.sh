@@ -47,20 +47,28 @@ fi
 #------------------------------------
 # Actualizo la base datos de SST en las estaciones Raprocan
 #------------------------------------
-printf "Updating SSTNorte\n"
+printf "Updating SST\n"
 if [ $Verbose == 1 ]
 then
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTNorteTenerife;exit'
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSST;exit'
 else
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTNorteTenerife;exit' > $DirLog/createSSTNorteTenerife.log
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSST;exit' > $DirLog/createSSTNorteTenerife.log
 fi
-printf "Updating SSTRaprocan\n"
-if [ $Verbose == 1 ]
-then
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTRaprocan;exit'
-else
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTRaprocan;exit' > $DirLog/createSSTRaprocan.log
-fi
+
+
+#if [ $Verbose == 1 ]
+#then
+#  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTNorteTenerife;exit'
+#else
+#  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTNorteTenerife;exit' > $DirLog/createSSTNorteTenerife.log
+#fi
+#printf "Updating SSTRaprocan\n"
+#if [ $Verbose == 1 ]
+#then
+#  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTRaprocan;exit'
+#else
+#  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTRaprocan;exit' > $DirLog/createSSTRaprocan.log
+#fi
 
 #------------------------------------
 # Anual and Ciclo estacional y Hovmoller plots
@@ -88,7 +96,6 @@ then
 else
   cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createReport;exit' > $DirLog/createReport.log
 fi
-
 
 #------------------------------------
 # i TelegramBot

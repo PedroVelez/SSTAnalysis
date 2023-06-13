@@ -22,24 +22,28 @@ EstLasPalmas = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesLasPalmas.txt
 EstGijon = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesGijon.txt');
 
 % Stations files
-DataSet(1).name='Raprocan';
-DataSet(1).Estaciones=[11:1:22];
-DataSet(1).TemperatureLimts=[17 26];
-
-DataSet(2).name='NorteTenerife';
-DataSet(2).Estaciones=[1:1:2];
-DataSet(2).TemperatureLimts=[17 26];
-
-DataSet(3).name='LasPalmas';
-DataSet(3).Estaciones=[1:1:2];
-DataSet(3).TemperatureLimts=[17 26];
-
-DataSet(4).name='Gijon';
-DataSet(4).Estaciones=[1:1:2];
-DataSet(4).TemperatureLimts=[11 24];
+Estaciones.name{1}='Raprocan';
+Estaciones.Estaciones{1}=[11:1:22];
+Estaciones.TemperatureLimts{1}=[17 26];
 
 
-%
+
+Estaciones.name{2}='NorteTenerife';
+Estaciones.name{3}='LasPalmas';
+Estaciones.name{4}='Gijon';%strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesGijon.txt');
+
+
+        
+    elseif NumDatSet==2
+        DataFile='SSTNorteTenerife';
+        Estaciones=[1:2];
+        TemperatureLimts=[17 26];
+    elseif NumDatSet==3
+        DataFile='SSTLasPalmas';
+        Estaciones=[1:2];
+        TemperatureLimts=[17 26];
+
+
 DirFigures=strcat(GlobalSU.ProPath,'/SSTWebpage');
 
 DirHTML='/html/pedro/images';
