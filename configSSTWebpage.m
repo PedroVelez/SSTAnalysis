@@ -38,6 +38,11 @@ DataSet(4).name='Gijon';
 DataSet(4).Estaciones=[1:1:2];
 DataSet(4).TemperatureLimts=[11 24];
 
+DataSet(5).name='Vigo';
+DataSet(5).Estaciones=[1:1:2];
+DataSet(5).TemperatureLimts=[11 24];
+
+
 
 %
 DirFigures=strcat(GlobalSU.AnaPath,'/SSTWebpage');
