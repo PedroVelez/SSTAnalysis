@@ -36,7 +36,7 @@ DataSet(3).TemperatureLimts=[11 24];
 
 DataSet(4).name='Vigo';
 DataSet(4).Estaciones=[1:1:2];
-DataSet(4).TemperatureLimts=[11 24];
+DataSet(4).TemperatureLimts=[11 22];
 
 DataSet(5).name='Santander';
 DataSet(5).Estaciones=[1:1:2];
