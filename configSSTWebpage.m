@@ -16,10 +16,10 @@ FileDataSST=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean');
 
 %Stations files
 
-EstRaprocan = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesRaprocan.txt');
-EstNorteTenerife = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesNorteTenerife.txt');
-EstLasPalmas = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesLasPalmas.txt');
-EstGijon = strcat(GlobalSU.ProPath,'/SSTWebpage/data/EstacionesGijon.txt');
+EstRaprocan = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesRaprocan.txt');
+EstNorteTenerife = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesNorteTenerife.txt');
+EstLasPalmas = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesLasPalmas.txt');
+EstGijon = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesGijon.txt');
 
 % Stations files
 DataSet(1).name='Raprocan';
@@ -40,7 +40,7 @@ DataSet(4).TemperatureLimts=[11 24];
 
 
 %
-DirFigures=strcat(GlobalSU.ProPath,'/SSTWebpage');
+DirFigures=strcat(GlobalSU.AnaPath,'/SSTWebpage');
 
 DirHTML='/html/pedro/images';
 
