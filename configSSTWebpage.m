@@ -42,6 +42,9 @@ DataSet(5).name='Santander';
 DataSet(5).Estaciones=[1:1:2];
 DataSet(5).TemperatureLimts=[11 24];
 
+DataSet(6).name='Cadiz';
+DataSet(6).Estaciones=[1:1:2];
+DataSet(6).TemperatureLimts=[17 26];
 
 
 %Directorios
