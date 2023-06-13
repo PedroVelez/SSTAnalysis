@@ -102,12 +102,12 @@ fi
 #------------------------------------
 URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
 URLimg="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendphoto?chat_id=$ArgoEsChannel"
-MENSAJE=`cat $HOME/Proyectos/SSTWebpage/data/report.txt`
+MENSAJE=`cat $HOME/Analisis/SSTWebpage/data/report.txt`
 
 curl -s -X POST $URL -d chat_id=$ArgoEsChannel -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log
-curl -F "photo=@$HOME/Proyectos/SSTWebpage/images/GraficosSSTNorteTenerife_CicloEstacional_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_CicloEstacional"
-curl -F "photo=@$HOME/Proyectos/SSTWebpage/images/GraficosSSTNorteTenerife_Anual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Anual"
-curl -F "photo=@$HOME/Proyectos/SSTWebpage/images/GraficosSSTNorteTenerife_Mensual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Mensual"
+curl -F "photo=@$HOME/Analisis/SSTWebpage/images/GraficosSSTNorteTenerife_CicloEstacional_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_CicloEstacional"
+curl -F "photo=@$HOME/Analisis/SSTWebpage/images/GraficosSSTNorteTenerife_Anual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Anual"
+curl -F "photo=@$HOME/Analisis/SSTWebpage/images/GraficosSSTNorteTenerife_Mensual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Mensual"
 
 
 
