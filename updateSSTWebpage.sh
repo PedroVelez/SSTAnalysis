@@ -4,7 +4,7 @@ source $HOME/.telegram
 Verbose=0
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
-PaginaWebDir=$HOME/Proyectos/SSTWebpage
+PaginaWebDir=$HOME/Analisis/SSTWebpage
 DirLog=$PaginaWebDir/log
 
 
