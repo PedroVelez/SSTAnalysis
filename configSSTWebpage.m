@@ -47,13 +47,13 @@ DataSet(6).name='Cadiz';
 DataSet(6).Estaciones=[1:1:2];
 DataSet(6).TemperatureLimts=[16 25];
 
-DataSet(7).name='Malaga';
-DataSet(7).Estaciones=[1:1:2];
-DataSet(7).TemperatureLimts=[16 25];
+%DataSet(7).name='Malaga';
+%DataSet(7).Estaciones=[1:1:2];
+%DataSet(7).TemperatureLimts=[16 25];
 
-DataSet(8).name='Palma';
-DataSet(8).Estaciones=[1:1:2];
-DataSet(8).TemperatureLimts=[16 25];
+%DataSet(8).name='Palma';
+%DataSet(8).Estaciones=[1:1:2];
+%DataSet(8).TemperatureLimts=[16 25];
 
 
 %Directorios
