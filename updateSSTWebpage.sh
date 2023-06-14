@@ -89,6 +89,22 @@ else
   cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures02;exit' > $DirLog/createSSTfigures02.log
 fi
 
+
+#------------------------------------
+# Update map
+#------------------------------------
+printf "Updating map\n"
+if [ $Verbose == 1 ]
+then
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createMapaLLet;exit'
+else
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createMapaLLet;exit' > $DirLog/createMapaLLet.log
+fi
+
+
+#------------------------------------
+# Update reports
+#------------------------------------
 printf "Updating reports\n"
 if [ $Verbose == 1 ]
 then
@@ -96,6 +112,8 @@ then
 else
   cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createReport;exit' > $DirLog/createReport.log
 fi
+
+
 
 #------------------------------------
 # i TelegramBot
