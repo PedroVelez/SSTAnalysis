@@ -1,9 +1,11 @@
 load Globales
 
 %% Geographical region
-NameRegion='CCLME';
-lat_min=5.1250; lat_max=44.8750;
-lon_min=333.1250; lon_max=354.8750;
+Region='Espanha';
+lon_min=-25+360;
+lon_max=5;
+lat_min=20;
+lat_max=50;
 
 %Time period
 AnhoI=1982;
@@ -22,38 +24,61 @@ EstLasPalmas = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesLasPalmas.txt
 EstGijon = strcat(GlobalSU.AnaPath,'/SSTWebpage/data/EstacionesGijon.txt');
 
 % Stations files
+isec=0;
+
+isec=isec+1;
 DataSet(1).name='Raprocan';
+DataSet(1).nameLong='Raprocan';
 DataSet(1).Estaciones=[11:1:22];
 DataSet(1).TemperatureLimts=[17 26];
 
-DataSet(2).name='NorteTenerife';
-DataSet(2).Estaciones=[1:1:2];
-DataSet(2).TemperatureLimts=[17 26];
+isec=isec+1;
+DataSet(isec).name='NorteTenerife';
+DataSet(isec).nameLong='NorteTenerife';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[17 26];
 
-DataSet(3).name='Vigo';
-DataSet(3).Estaciones=[1:1:2];
-DataSet(3).TemperatureLimts=[11 22];
+isec=isec+1;
+DataSet(isec).name='Tenerife';
+DataSet(isec).nameLong='Santa Cruz de Tenerife';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[17 26];
 
+isec=isec+1;
+DataSet(isec).name='Vigo';
+DataSet(isec).nameLong='Vigo';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[11 21];
 
-DataSet(4).name='Gijon';
-DataSet(4).Estaciones=[1:1:2];
-DataSet(4).TemperatureLimts=[11 24];
+isec=isec+1;
+DataSet(isec).name='Gijon';
+DataSet(isec).nameLong='Gijón';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[11 24];
 
-DataSet(5).name='Santander';
-DataSet(5).Estaciones=[1:1:2];
-DataSet(5).TemperatureLimts=[11 24];
+isec=isec+1;
+DataSet(isec).name='Santander';
+DataSet(isec).nameLong='Santander';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[11 24];
 
-DataSet(6).name='Cadiz';
-DataSet(6).Estaciones=[1:1:2];
-DataSet(6).TemperatureLimts=[16 25];
+isec=isec+1;
+DataSet(isec).name='Cadiz';
+DataSet(isec).nameLong='Cádiz';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[16 25];
 
-%DataSet(7).name='Malaga';
-%DataSet(7).Estaciones=[1:1:2];
-%DataSet(7).TemperatureLimts=[16 25];
+isec=isec+1;
+DataSet(isec).name='Malaga';
+DataSet(isec).nameLong='Málaga';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[13 28];
 
-%DataSet(8).name='Palma';
-%DataSet(8).Estaciones=[1:1:2];
-%DataSet(8).TemperatureLimts=[16 25];
+isec=isec+1;
+DataSet(isec).name='Palma';
+DataSet(isec).nameLong='Palma de Mallorca';
+DataSet(isec).Estaciones=[1:1:2];
+DataSet(isec).TemperatureLimts=[12 30];
 
 
 %Directorios
@@ -61,7 +86,7 @@ DirFigures=strcat(GlobalSU.AnaPath,'/SSTWebpage');
 
 %Directorio html servidor PP
 DirHTML='/html/pedro/images';
-DirHTMLIEOOS='/html/IEOOS/images';
+DirHTMLIEOOS='/html/IEOOS/SST/images';
 
 FuenteDatos=sprintf('Elaborado por el Instituto Espanol de Oceanografia\n a partir de datos de https://www.ncdc.noaa.gov/oisst');
 

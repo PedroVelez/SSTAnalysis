@@ -76,17 +76,17 @@ fi
 printf "Updating seasonal cycle\n"
 if [ $Verbose == 1 ]
 then
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures_yearly;exit'
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures02;exit'
 else
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures_yearly;exit' > $DirLog/createSSTfigures_yearly.log
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures02;exit' > $DirLog/createSSTfigures01.log
 fi
 
 printf "Updating hovmoller plotsa\n"
 if [ $Verbose == 1 ]
 then
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures;exit'
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures02;exit'
 else
-  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures;exit' > $DirLog/createSSTfigures.log
+  cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createSSTfigures02;exit' > $DirLog/createSSTfigures02.log
 fi
 
 printf "Updating reports\n"

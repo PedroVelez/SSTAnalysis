@@ -1,10 +1,11 @@
 clearvars ;close all
 global GlobalSU;load Globales
 
-%Baja los datos de https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.highres.html
-%y actualiza la base de datos existente
-AnhoI=1982;
-AnhoF=2022;
+% A partir de los netcdf anuales crea un .mat para la region especificada. 
+% lo hacen en lon -180,180
+
+AnhoI=2022;
+AnhoF=2023;
 
 DirOutData=fullfile(GlobalSU.home,'Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres');
 
@@ -31,7 +32,7 @@ for ianho=AnhoI:1:AnhoF
     ilon2=Locate(lon,GlobalDS.lon_max);
     ilat1=Locate(lat,GlobalDS.lat_min);
     ilat2=Locate(lat,GlobalDS.lat_max);
-    
+
     tlon1=double(ncread(FileInUltimo,'lon',[ilon1],[length(lon)-ilon1]));
     tlat1=double(ncread(FileInUltimo,'lat',[ilat1],[ilat2-ilat1]));
     tsst1=double(ncread(FileInUltimo,'sst',[ilon1 ilat1 1],[length(lon)-ilon1  ilat2-ilat1 itime]));
@@ -42,7 +43,6 @@ for ianho=AnhoI:1:AnhoF
     tlon2=double(ncread(FileInUltimo,'lon',[1],[ilon2]));
     tsst2=double(ncread(FileInUltimo,'sst',[1 ilat1 1],[ilon2  ilat2-ilat1 itime]));
     tsst2(tsst2==sstnan)=NaN;
-
 
     tsst=cat(1,tsst1,tsst2);
     tlon= cat(1,tlon1-360,tlon2);

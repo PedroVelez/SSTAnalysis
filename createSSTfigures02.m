@@ -6,13 +6,11 @@ configSSTWebpage
 %% Inicio
 
 for numDatSet = 1:1:length(DataSet)
-
     DataFile=strcat('SST',DataSet(numDatSet).name);
     Estaciones=DataSet(numDatSet).Estaciones;
     TemperatureLimts=DataSet(numDatSet).TemperatureLimts;
     fprintf('Creating figures for %s section (%d/%d): \n',DataFile,numDatSet,length(DataSet))
 
-    
     DSST=load(strcat('./data/',DataFile));
     SSTd=DSST.sstd;
     Timed=DSST.jdaySST;
@@ -126,7 +124,7 @@ for numDatSet = 1:1:length(DataSet)
     InformeAnho1=sprintf('Temperatura media en %s: %4.2f C [%s].\n', ...
         datestr(TimeAnualHoy(end),'yyyy'), ...
         MEstacionesSSTanualHoyM(end)+OffSetDiaHoy, ...
-        DataFile);
+        DataSet(numDatSet).nameLong);
 
     InformeAnho2=sprintf('%s-%s: ', ...
         datestr(nanmin(TimeAnual),'yyyy'),datestr(nanmax(TimeAnual),'yyyy'));
@@ -149,10 +147,17 @@ for numDatSet = 1:1:length(DataSet)
 
     %Ftp the file
     ftpobj=FtpOceanografia;
-    cd(ftpobj,'/html/pedro/images');
+    cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoAno);
     mput(ftpobj,FicheroGraficoAnoNombre);
     close(ftpobj)
+
+    ftpobj=FtpOceanografia;
+    cd(ftpobj,DirHTMLIEOOS);
+    mput(ftpobj,FicheroGraficoAno);
+    mput(ftpobj,FicheroGraficoAnoNombre);
+    close(ftpobj)
+
 
     save(FileNameInforme,'InformeAnho');
     fprintf(' \nSaving report\n')

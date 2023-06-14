@@ -6,7 +6,7 @@ configSSTWebpage
 Files=dir(strcat(FileDataSST,'*'));
 for i1=1:length(Files)
     DatatSST=matfile(strcat(Files(i1).folder,'/',Files(i1).name));
-    TimeLast(i1)=nanmax(DatatSST.timetd);
+    TimeLast(i1) = nanmax(DatatSST.timetd);
 end
 iFileLast=find(TimeLast==max(TimeLast));
 
@@ -27,10 +27,8 @@ for iest=1:1:length(DataSet)
 
     for iEstaciones=1:length(loneR)
         fprintf('%d, ',iEstaciones)
-        ilon=Locate(lonSST,loneR(iEstaciones)+360);
+        ilon=Locate(lonSST,loneR(iEstaciones));
         ilat=Locate(latSST,lateR(iEstaciones));
-        [d,phaseangle]=sw_dist([latSST(ilat) lateR(iEstaciones)],[lonSST(ilon)-360 loneR(iEstaciones)]);
-        dist(iEstaciones)=d;
         sstd(iEstaciones,:)=DataSST.ssttd(ilon,ilat,:);
     end
     fprintf(' \nSaving data\n')

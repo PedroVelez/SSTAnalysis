@@ -154,7 +154,7 @@ for numDatSet = 1:1:length(DataSet)
     InformeDia=sprintf('Temperatura %s: %4.2f C [%s]. \n %s-%s. Media %s: %4.2f C. Desviacion standart: %04.2f C. Anomalia %4.2f C.', ...
         datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm yyyy'), ...
         Y(end), ...
-        DataFile, ...
+        DataSet(numDatSet).nameLong, ...
         datestr(min(TimeMesSelecionado),'yyyy'), ...
         datestr(max(TimeMesSelecionado),'yyyy'), ...
         datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm'), ...
@@ -177,12 +177,6 @@ for numDatSet = 1:1:length(DataSet)
     text(datenum(2000,08,01),TemperatureLimts(1)+0.5,FuenteDatos,'HorizontalAlignment','center')
 
     CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
-
-    %Ftp the file
-    ftpobj=FtpOceanografia;
-    cd(ftpobj,DirHTML);
-    mput(ftpobj,FicheroGraficoCicloEstacional);
-    close(ftpobj)
 
 
     %% Figura del mes seleccion
@@ -226,7 +220,7 @@ for numDatSet = 1:1:length(DataSet)
         TMesSelecionado,...
         datestr(TimeMesSelecionado(end),'yyyy'),...
         SSTMesSelecionado(end), ...
-        DataFile);
+       DataSet(numDatSet).nameLong);
     InformeMes2=sprintf('(%s-%s): ', ...
         datestr(min(TimeMesSelecionado),'yyyy'),datestr(max(TimeMesSelecionado),'yyyy'));
     InformeMes3=sprintf('Temperatura media en %s: %4.2f C, desviacion standart: %04.2f C.\n', ...
@@ -243,13 +237,8 @@ for numDatSet = 1:1:length(DataSet)
 
     CreaFigura(gcf,FicheroGraficoMes,[4])
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
-
-    ftpobj=FtpOceanografia;
-    cd(ftpobj,DirHTML);
-    mput(ftpobj,FicheroGraficoMes);
-    mput(ftpobj,FicheroGraficoMesNombre);
-    close(ftpobj)
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
+
 
     %% Diagrama de Hovmoller
     % Ano sintentico en 1980
@@ -310,15 +299,21 @@ for numDatSet = 1:1:length(DataSet)
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
 
     InformeHovMollerDiario=sprintf('Anomalias de temperatura diarias [%s]. Actualizado %s. \n Periodo de referencia para las anomalias (%4d-%4d).', ...
-        DataFile, ...
+        DataSet(numDatSet).nameLong, ...
         datestr(datestr(max(Timed)),'dd mmmm yyyy'), ...
         uY(1), ...
         uY(end-1));
     title(InformeHovMollerDiario)
 
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
+
+
+    % Upload to fto the images
     ftpobj=FtpOceanografia;
     cd(ftpobj,DirHTML);
+    mput(ftpobj,FicheroGraficoCicloEstacional);
+    mput(ftpobj,FicheroGraficoMes);
+    mput(ftpobj,FicheroGraficoMesNombre);
     mput(ftpobj,FicheroGraficoHMDiario);
     close(ftpobj)
 
@@ -330,7 +325,6 @@ for numDatSet = 1:1:length(DataSet)
     mput(ftpobj,FicheroGraficoMes);
     mput(ftpobj,FicheroGraficoMesNombre);
     close(ftpobj)
-
     % Save Reports
     save(FileNameInforme,'InformeMes','InformeDia');
 end

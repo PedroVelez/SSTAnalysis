@@ -16,7 +16,6 @@ GMTamanoArgoIb=[700,650];
 
 %Titulo
 PaginaWebDir='';
-TituloWeb='en las aguas que rodean Espa&ntilde;a';
 FileHtmlIEOOSStatus='SSTMapa.html';
 
 %% Inicio
@@ -49,8 +48,8 @@ fprintf(fid,'</head> \n');
 
 fprintf(fid,'<body> \n');
 fprintf(fid,'    <div align="center">\n');
-fprintf(fid,'        Cobertura del sistema de observacion oceanica del <b>IEO</b> el 27-May-2022 <br/>\n');
-fprintf(fid,'        (24) Estaciones hidrograficas. Último dato recibido el 21-Apr-2022 06:03:30 <br/>\n');
+fprintf(fid,'        Temperatura superficial del mar en las demarcaciones Españolas.<br/>\n');
+fprintf(fid,'         Actualidado el %s .<br/>\n',date);
 fprintf(fid,'        <div id="map" style="width: 700px; height: 650px;"></div> \n');
 fprintf(fid,'    </div>\n');
 
@@ -81,19 +80,19 @@ fprintf(fid,' //Datos de las ultimas ocupaciones de las estaciones\n');
 fprintf(fid,'   var estaciones = [\n');  
 
 for ir=2:1:length(DataSet)
-    fprintf('Interpolating data into %s section (%d/%d): ',DataSet(ir).name,ir,length(DataSet))
+    fprintf('Reading %s section (%d/%d): \n',DataSet(ir).name,ir,length(DataSet))
     DataFile=strcat('SST',DataSet(ir).name);
     Estaciones=DataSet(ir).Estaciones;
     data=load(strcat(GlobalSU.AnaPath,'/SSTWebpage/data/SST',DataSet(ir).name,'.mat'));
-    
     loneR=data.loneR;
     lateR=data.lateR;
     for ie=Estaciones
         NombreRadial=DataSet(ir).name;
+        NombreRadialLong=DataSet(ir).nameLong;
         NombreEstacion=char((ie));
-        %SurfaceValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iSV),tems(np,iSV),sals(np,iSV));
+        SurfaceValue=sprintf('%4.2fºC',nanmean(data.sstd(:,end)));
         %BottonValue=sprintf('%3.0fdbar %4.1fC %4.1f',pres(np,iBV),tems(np,iBV),sals(np,iBV));
-         fprintf(fid,'           [1,''%s'',%4.2f,%4.2f,''%s'',''%s'',''%s'',''%s'',''%s''], \n', NombreEstacion,lateR(ie),loneR(ie),NombreRadial,'14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff');
+         fprintf(fid,'           [1,''%s'',%4.2f,%4.2f,''%s'',''%s'',''%s'',''%s'',''%s'',''%s''], \n', NombreEstacion,lateR(ie),loneR(ie),NombreRadial,NombreRadialLong,datestr(data.jdaySST(end)),SurfaceValue,'BottonValue','#bf3eff');
 
     end
 end    
@@ -106,16 +105,16 @@ fprintf(fid,'		var estacion = estaciones[i];\n');
 fprintf(fid,'		if(estacion[0] == 1){\n');  
 fprintf(fid,'			L.circleMarker([estacion[2], estacion[3]],\n');  
 fprintf(fid,'            {radius : 3,\n');  
-fprintf(fid,'            color  : estacion[8],\n');  
+fprintf(fid,'            color  : estacion[9],\n');  
 fprintf(fid,'            title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
 fprintf(fid,'            opacity: 1,\n');  
 fprintf(fid,'            fillOpacity:.45,\n');  
-fprintf(fid,'            fillColor:estacion[8]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/pedro/SST''+estacion[4]+''.html" target="_blank">''+estacion[4]+''</a></b><br><b>Ultimo datos&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
+fprintf(fid,'            fillColor:estacion[9]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST''+estacion[4]+''.html" target="_blank">''+estacion[5]+''</a></b><br><b>Último dato: </b>''+estacion[6]+''<br>''+estacion[7]+''</p> </center>'');\n');  
 fprintf(fid,'		}else if (estacion[0] == 0) {\n');  
 fprintf(fid,'			L.marker([estacion[2], estacion[3]],{\n');  
 fprintf(fid,'			icon: marcador0,\n');  
 fprintf(fid,'			title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
-fprintf(fid,'			}).addTo(map).bindPopup(''<center><p>Station <b><a href="http://www.oceanografia.es/pedro/SST+''+estacion[1]+''.html" target="_blank">''+estacion[1]+''</a></b><br><b>''+estacion[4]+''</b><br><br><b>Last profile&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
+fprintf(fid,'			}).addTo(map).bindPopup(''<center><p>Station <b><a href="http://www.oceanografia.es/IEOOS/SST/SST+''+estacion[1]+''.html" target="_blank">''+estacion[1]+''</a></b><br><b>''+estacion[4]+''</b><br><br><b>Last profile&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
 fprintf(fid,'		}\n');
 fprintf(fid,'	}\n');
 
@@ -132,7 +131,7 @@ fclose(fid);
 %% Ftp the file
 fprintf('     > Uploading  %s \n',FileHtmlIEOOSStatus);
 ftpobj=FtpOceanografia;
-cd(ftpobj,'/html/IEOOS/html_files');
+cd(ftpobj,'/html/IEOOS/SST');
 mput(ftpobj,FileHtmlIEOOSStatus);
 
 %% Writting Informe

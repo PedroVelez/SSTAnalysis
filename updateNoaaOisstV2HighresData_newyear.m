@@ -1,69 +1,67 @@
 close all;clear all;clc
-%Baja los datos de https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.highres.html
-%https://www.esrl.noaa.gov/psd/data/gridded/data.noaa.oisst.v2.highres.html
 
-%y actualiza la base de datos existente
+%Script arealizar para crear el paso a un año nuevo. 
+% Coge los datos AnhoI-An
+% Ya esta los datos del
+%año previo hasta 31/12 y hay datos a partir de 1/1 del año siguiente
 
-NameRegion='CCLME';
-
-lat_min=5.1250; lat_max=44.8750;
-lon_min=333.1250; lon_max=354.8750;
+%Actualiza la base de datos existente
 
 [Ynow,Mnow,Dnow]=datevec(now);
 AnhoI=1982;
-AnhoF=2022;
+AnhoF=2023;
 
 %% inicio
-
-%Read options
 configSSTWebpage
 
-DirData=DirDataSST;
-FileNameInforme=strcat(DirData,'/InformeActualizaData');
-
-%Nombre del fichero vigente
-FilesLocal=dir(strcat(DirData,'/*NOAAOisstv2HighresSstDayMean*',num2str(AnhoF),'*'));
-DiaMax=0;
-
-% Bajo los datos del ultimo anho
-%FileWeb=strcat('https://www.esrl.noaa.gov/psd/thredds/fileServer/Datasets/noaa.oisst.v2.highres/sst.day.mean.',num2str(AnhoF),'.v2.nc');
-FileWeb=strcat('http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.',num2str(AnhoF),'.v2.nc');
-fprintf('     >Reading data from %s \n',FileWeb)
+% Nombre del fichero vigente
+% Download netcdf file for the current year
+FileThisYear=strcat('sst.day.mean.',num2str(AnhoF),'.nc');
+fprintf('     > Downlaoding %s\n',FileThisYear)
+%ftpobj = ftp('ftp.cdc.noaa.gov');
+%cd(ftpobj,'Datasets/noaa.oisst.v2.highres/');
+%mget(ftpobj,FileThisYear,DirDataSST);
+%mget(ftpobj,FileThisYear,DirDataSSTNC);
 
 %Miro se si han actualizado los datos en la web
-ttime=double(ncread(FileWeb,'time'));ttime=ttime+datenum(1800,1,1);%days since 1800-01-01 00:00:00
+ttime=double(ncread(fullfile(DirDataSST,FileThisYear),'time'));ttime=ttime+datenum(1800,1,1);%days since 1800-01-01 00:00:00
 DiaMaxWeb=max(ttime);
 [YnMaxWeb,MMaxWeb,DMaxWeb]=datevec(DiaMaxWeb);
-fprintf('     >Datos web %s, Datos local %s\n',datestr(DiaMaxWeb))
+fprintf('     >Datos web %s\n',datestr(DiaMaxWeb))
 
-% Actualizo los datos
+%% Actualizo los datos locales
 Informe=sprintf('     >Actualizando los datos hasta el %s \n',datestr(DiaMaxWeb));disp(Informe)
 
 %Selecciono zona
+ttime=double(ncread(fullfile(DirDataSST,FileThisYear),'time'));ttime=ttime+datenum(1800,1,1);%days since 1800-01-01 00:00:00
 itime=length(ttime);
-lon=double(ncread(FileWeb,'lon')); %grids = 'Uniform grid from 0.125 to 359.875 by 0.25'
-lat=double(ncread(FileWeb,'lat')); %grids = 'Uniform grid from -89.875 to 89.875 by 0.25'
-ilon_min=Locate(lon,lon_min);
-ilon_max=Locate(lon,lon_max);
-ilat_min=Locate(lat,lat_min);
-ilat_max = Locate(lat,lat_max);
-tlon = double(ncread(FileWeb,'lon',[ilon_min],[ilon_max-ilon_min+2]));
-tlat = double(ncread(FileWeb,'lat',[ilat_min],[ilat_max-ilat_min+2]));
-try
-    tsst = double(ncread(FileWeb,'sst',[ilon_min ilat_min 1],[ilon_max-ilon_min+2  ilat_max-ilat_min+2 itime]));
-catch ME
-    for i1 = 1:itime
-        fprintf('%03d, ',i1)
-        vartemp = double(ncread(FileWeb,'sst',[ilon_min ilat_min i1],[ilon_max-ilon_min+2  ilat_max-ilat_min+2 1]));
-        tsst(:,:,i1) = vartemp;
-    end
-end
-sstnan = double(ncreadatt(FileWeb,'sst','missing_value'));%missing_value = -9.969209968386869e+36
-tsst ( tsst == sstnan) = NaN;
+
+lon=double(ncread(fullfile(DirDataSST,FileThisYear),'lon'));
+lat=double(ncread(fullfile(DirDataSST,FileThisYear),'lat'));
+
+ilon1=Locate(lon,lon_min);
+ilon2=Locate(lon,lon_max);
+ilat1=Locate(lat,lat_min);
+ilat2=Locate(lat,lat_max);
+
+tlon1=double(ncread(fullfile(DirDataSST,FileThisYear),'lon',[ilon1],[length(lon)-ilon1]));
+tlat1=double(ncread(fullfile(DirDataSST,FileThisYear),'lat',[ilat1],[ilat2-ilat1]));
+tsst1=double(ncread(fullfile(DirDataSST,FileThisYear),'sst',[ilon1 ilat1 1],[length(lon)-ilon1  ilat2-ilat1 itime]));
+sstnan=double(ncreadatt(fullfile(DirDataSST,FileThisYear),'sst','missing_value'));%missing_value = -9.969209968386869e+36
+tsst1(tsst1==sstnan)=NaN;
+
+
+tlon2=double(ncread(fullfile(DirDataSST,FileThisYear),'lon',[1],[ilon2]));
+tsst2=double(ncread(fullfile(DirDataSST,FileThisYear),'sst',[1 ilat1 1],[ilon2  ilat2-ilat1 itime]));
+tsst2(tsst2==sstnan)=NaN;
+
+tsst=cat(1,tsst1,tsst2);
+tlon= cat(1,tlon1-360,tlon2);
+tlat=tlat1;
 
 %Leo datos periodo 1982-(ultimoano-1) and add it
-FileInt=strcat(DirData,'/NOAAOisstv2HighresSstDayMean_',datestr(datenum(AnhoI,1,1),'ddmmyyyy'),'_',datestr(datenum(AnhoF-1,12,31),'ddmmyyyy'),'_',NameRegion);
-fprintf('     >Appending %s -->',FileInt)
+FileInt=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean_',datestr(datenum(AnhoI,1,1),'ddmmyyyy'),'_',datestr(datenum(AnhoF-1,12,31),'ddmmyyyy'),'_',Region);
+fprintf('     >Appending %s --> \n',FileInt)
 DATA=matfile(FileInt);
 ssttd=DATA.ssttd;
 timetd=DATA.timetd;
@@ -73,6 +71,6 @@ ssttd=cat(3,ssttd,tsst);
 timetd=cat(1,timetd,ttime);
 lon=tlon;
 lat=tlat;
-FileOut=strcat(DirData,'/NOAAOisstv2HighresSstDayMean_',datestr(timetd(1),'ddmmyyyy'),'_',datestr(timetd(end),'ddmmyyyy'),'_',NameRegion,'.mat');
+FileOut=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean_',datestr(timetd(1),'ddmmyyyy'),'_',datestr(timetd(end),'ddmmyyyy'),'_',Region,'.mat');
 fprintf('%s \n',FileOut)
 save(FileOut,'lon','lat','ssttd','timetd','lat_min','lat_max','lon_min','lon_max')

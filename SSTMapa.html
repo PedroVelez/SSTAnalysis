@@ -17,8 +17,8 @@
 </head> 
 <body> 
     <div align="center">
-        Cobertura del sistema de observacion oceanica del <b>IEO</b> el 27-May-2022 <br/>
-        (24) Estaciones hidrograficas. Último dato recibido el 21-Apr-2022 06:03:30 <br/>
+        Temperatura superficial del mar en las demarcaciones Españolas.<br/>
+         Actualidado el 14-Jun-2023 .<br/>
         <div id="map" style="width: 700px; height: 650px;"></div> 
     </div>
 <script type="text/javascript">
@@ -40,32 +40,38 @@
        marcador1 = new stationIcon({iconUrl: 'http://www.oceanografia.es/argo/imagenes/icons8-select-10.png'});
  //Datos de las ultimas ocupaciones de las estaciones
    var estaciones = [
-           [1,'',28.56,-16.12,'NorteTenerife','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'NorteTenerife','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','14-Jan-2020 00:10:40','SurfaceValue','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','12-Jun-2023','18.72ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','12-Jun-2023','18.72ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','12-Jun-2023','18.62ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','12-Jun-2023','18.62ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','12-Jun-2023','20.16ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','12-Jun-2023','20.16ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','12-Jun-2023','21.66ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','12-Jun-2023','21.66ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','12-Jun-2023','20.62ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','12-Jun-2023','20.62ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','12-Jun-2023','23.25ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','12-Jun-2023','23.25ºC','BottonValue','#bf3eff'], 
 		];
 for (var i = 0; i < estaciones.length; i++) {
 		var estacion = estaciones[i];
 		if(estacion[0] == 1){
 			L.circleMarker([estacion[2], estacion[3]],
             {radius : 3,
-            color  : estacion[8],
+            color  : estacion[9],
             title: estacion[4]+estacion[1]+' '+estacion[5],
             opacity: 1,
             fillOpacity:.45,
-            fillColor:estacion[8]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/pedro/SST'+estacion[4]+'.html" target="_blank">'+estacion[4]+'</a></b><br><b>Ultimo datos&nbsp;</b>'+estacion[5]+'</p></center>');
+            fillColor:estacion[9]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST'+estacion[4]+'.html" target="_blank">'+estacion[5]+'</a></b><br><b>Último dato: </b>'+estacion[6]+'<br>'+estacion[7]+'</p> </center>');
 		}else if (estacion[0] == 0) {
 			L.marker([estacion[2], estacion[3]],{
 			icon: marcador0,
 			title: estacion[4]+estacion[1]+' '+estacion[5],
-			}).addTo(map).bindPopup('<center><p>Station <b><a href="http://www.oceanografia.es/pedro/SST+'+estacion[1]+'.html" target="_blank">'+estacion[1]+'</a></b><br><b>'+estacion[4]+'</b><br><br><b>Last profile&nbsp;</b>'+estacion[5]+'</p></center>');
+			}).addTo(map).bindPopup('<center><p>Station <b><a href="http://www.oceanografia.es/IEOOS/SST/SST+'+estacion[1]+'.html" target="_blank">'+estacion[1]+'</a></b><br><b>'+estacion[4]+'</b><br><br><b>Last profile&nbsp;</b>'+estacion[5]+'</p></center>');
 		}
 	}
 </script> 
