@@ -4,7 +4,7 @@ global GlobalSU;load Globales
 % Une los .mat anuales creados con updateNoaaOisstV2HighresData_CreateAnual.m
 % lo hacen en lon -180,180
 
-DirDataAnual=fullfile(GlobalSU.home,'Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres');
+DirDataAnual=fullfile(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
 
 AnhoI=1982;
 AnhoF=2023;
