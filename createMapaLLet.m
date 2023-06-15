@@ -16,7 +16,7 @@ GMTamanoArgoIb=[700,650];
 
 %Titulo
 PaginaWebDir='';
-FileHtmlIEOOSStatus='SSTMapa.html';
+FileHtmlIEOOSStatus='./data/SSTMapa.html';
 
 %% Inicio
 
