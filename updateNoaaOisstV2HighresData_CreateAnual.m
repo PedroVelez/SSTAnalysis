@@ -7,7 +7,7 @@ global GlobalSU;load Globales
 AnhoI=2022;
 AnhoF=2023;
 
-DirOutData=fullfile(GlobalSU.home,'Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres');
+DirOutData=fullfile(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
 
 Region='Espanha';
 GlobalDS.lon_min=-25+360;
@@ -18,7 +18,7 @@ GlobalDS.lat_max=50;
 fprintf('     > %s\n',Region)
 %% inicio
 for ianho=AnhoI:1:AnhoF
-    FileInUltimo=strcat(GlobalSU.home,'/Dropbox/Oceanografia/Data/Satelite/noaa.oisst.v2.highres/NC/sst.day.mean.',num2str(ianho),'.nc');
+    FileInUltimo=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres/NC/sst.day.mean.',num2str(ianho),'.nc');
     fprintf('     > Reading data from %s \n',FileInUltimo)
 
     ttime=double(ncread(FileInUltimo,'time'));ttime=ttime+datenum(1800,1,1);%days since 1800-01-01 00:00:00
