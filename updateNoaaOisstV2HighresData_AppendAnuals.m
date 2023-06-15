@@ -7,7 +7,7 @@ global GlobalSU;load Globales
 DirDataAnual=fullfile(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
 
 AnhoI=1982;
-AnhoF=2023;
+AnhoF=2022;
 
 Region='Espanha';
 GlobalDS.lon_min=-25+360;
