@@ -49,7 +49,7 @@ fprintf(fid,'</head> \n');
 fprintf(fid,'<body> \n');
 fprintf(fid,'    <div align="center">\n');
 fprintf(fid,'        Temperatura superficial del mar en las demarcaciones Españolas.<br/>\n');
-fprintf(fid,'         Actualidado el %s .<br/>\n',date);
+fprintf(fid,'         Actualizado el %s .<br/>\n',date);
 fprintf(fid,'        <div id="map" style="width: 700px; height: 650px;"></div> \n');
 fprintf(fid,'    </div>\n');
 

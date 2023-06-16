@@ -4,6 +4,7 @@ log/*
 images/*
 data/report*
 data/*.mat
+data/*.html
 .AppleDouble
 .AppleDouble/*
 .DS_Store
