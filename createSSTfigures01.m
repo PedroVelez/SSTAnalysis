@@ -102,12 +102,18 @@ for numDatSet = 1:1:length(DataSet)
     MinTimeMesSelecionado=TimeMesSelecionado(SSTMesSelecionado==MinSSTMesSelecionado);
 
     fprintf('  Periodo de referencia %s-%s\n',datestr(min(TimeMesSelecionado),'yyyy'),datestr(max(TimeMesSelecionado),'yyyy'))
-    fprintf('  Media Temperatura %s       %4.2f\n',datestr(datenum(uY(iY),MesSelecionado,1),'mmmm'),MeanSSTMesSelecionado)
-    fprintf('  Std   Temperatura %s       %04.2f\n',datestr(datenum(uY(iY),MesSelecionado,1),'mmmm'),StdSSTMesSelecionado)
-    fprintf('  Max   Temperatura %s    %4.2f\n',datestr(MaxTimeMesSelecionado,'mmmm.yy'),MaxSSTMesSelecionado)
-    fprintf('  Min   Temperatura %s    %4.2f\n\n',datestr(MinTimeMesSelecionado,'mmmm.yy'),MinSSTMesSelecionado)
+
+    fprintf('  Media Temperatura %s       %4.2f\n',string(datetime(datenum(uY(iY),MesSelecionado,1),'ConvertFrom','datenum'),"MMMM","es_ES"), ...
+        MeanSSTMesSelecionado)
+    fprintf('  Std   Temperatura %s       %04.2f\n',string(datetime(datenum(uY(iY),MesSelecionado,1),'ConvertFrom','datenum'),"MMMM","es_ES"), ...
+        StdSSTMesSelecionado)
+    fprintf('  Max   Temperatura %s    %4.2f\n',string(datetime(MaxTimeMesSelecionado,'ConvertFrom','datenum'),"MMMM.yy","es_ES"), ...
+        MaxSSTMesSelecionado)
+    fprintf('  Min   Temperatura %s    %4.2f\n\n',string(datetime(MaxTimeMesSelecionado,'ConvertFrom','datenum'),"MMMM.yy","es_ES"),...
+        MinSSTMesSelecionado)
     for iY=length(uY)-NAnosR+1:length(uY)
-        fprintf('  Media Temperatura %s    %4.2f, anomalia: %5.2f\n',datestr(datenum(uY(iY),MesSelecionado,1),'mmmm.yy'),SSTMesSelecionado(iY),SSTMesSelecionado(iY)-MeanSSTMesSelecionado)
+        fprintf('  Media Temperatura %s    %4.2f, anomalia: %5.2f\n',string(datetime(MaxTimeMesSelecionado,'ConvertFrom','datenum'),"MMMM.yy","es_ES"), ...
+            SSTMesSelecionado(iY),SSTMesSelecionado(iY)-MeanSSTMesSelecionado)
     end
 
     %% figuras
@@ -116,7 +122,8 @@ for numDatSet = 1:1:length(DataSet)
     Xt=[CATimed2000-366 CATimed2000 CATimed2000+366];
     Ym=[CAMSSTa2000     CAMSSTa2000 CAMSSTa2000];
     Ys=[CASSSTa2000     CASSSTa2000 CASSSTa2000];
-    %Desviacion estandasr
+
+    %Desviacion estándar
     patch([Xt fliplr(Xt) Xt(1) ],[Ym+2*Ys fliplr(Ym-2*Ys) Ym(1)+2*Ys(1)],[0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on
 
     %media
@@ -151,18 +158,21 @@ for numDatSet = 1:1:length(DataSet)
     plot([datenum(2000,MMdSST,MDdSST) datenum(2000,MMdSST,MDdSST)],[TemperatureLimts(1) Y(end)],'k--','linewidth',1)
     plot([X(1) X(end)],[Y(end) Y(end)],'k--','linewidth',1)
 
-    InformeDia=sprintf('Temperatura %s: %4.2f C [%s]. \n %s-%s. Media %s: %4.2f C. Desviacion standard: %04.2f C. Anomalia %4.2f C.', ...
-        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm yyyy'), ...
+    InformeDia=sprintf('Temperatura %s: %4.2f C [%s]. \n %s-%s. Media %s: %4.2f C. Desviación estándar: %04.2f C. Anomalía %4.2f C.', ...
+        string(datetime(datenum(MYdSST,MMdSST,MDdSST),'ConvertFrom','datenum'),"dd MMMM yy","es_ES"), ...
         Y(end), ...
         DataSet(numDatSet).nameLong, ...
-        datestr(min(TimeMesSelecionado),'yyyy'), ...
-        datestr(max(TimeMesSelecionado),'yyyy'), ...
-        datestr(datenum(MYdSST,MMdSST,MDdSST),'dd mmmm'), ...
+        string(datetime(min(TimeMesSelecionado),'ConvertFrom','datenum'),"yyyy","es_ES"), ...
+        string(datetime(max(TimeMesSelecionado),'ConvertFrom','datenum'),"yyyy","es_ES"), ...
+        string(datetime(datenum(MYdSST,MMdSST,MDdSST),'ConvertFrom','datenum'),"dd MMMM","es_ES"), ...
         Ym(Xt==datenum(2000,MMdSST,MDdSST)), ...
         Ys(Xt==datenum(2000,MMdSST,MDdSST)), ...
         Y(end)-Ym(Xt==datenum(2000,MMdSST,MDdSST)));
 
-    text(datenum(2000,MMdSST,MDdSST),TemperatureLimts(1)+1,sprintf('%s %4.2f C',datestr(datenum(MYdSST,MMdSST,MDdSST),'dd.mmmm'),Y(end)),'backgroundcolor','w')
+    text(datenum(2000,MMdSST,MDdSST),TemperatureLimts(1)+1, ...
+        sprintf('%s %4.2f C',string(datetime(datenum(MYdSST,MMdSST,MDdSST),'ConvertFrom','datenum'),"dd.MMMM","es_ES"),Y(end)),'backgroundcolor','w')
+
+
 
     title(InformeDia)
     colormap(Canhos)
@@ -175,9 +185,7 @@ for numDatSet = 1:1:length(DataSet)
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
     box on
     text(datenum(2000,08,01),TemperatureLimts(1)+0.5,FuenteDatos,'HorizontalAlignment','center')
-
     CreaFigura(gcf,FicheroGraficoCicloEstacional,[4])
-
 
     %% Figura del mes seleccion
     figure
@@ -185,7 +193,7 @@ for numDatSet = 1:1:length(DataSet)
     %Limites
     TempLimits=[MeanSSTMesSelecionado-3*StdSSTMesSelecionado  MeanSSTMesSelecionado+3*StdSSTMesSelecionado];
 
-    %desviacion standard
+    %desviacion
     patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)], ...
         [MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado-2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado MeanSSTMesSelecionado+2*StdSSTMesSelecionado], ...
         [0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on;alpha(0.6)
@@ -209,7 +217,6 @@ for numDatSet = 1:1:length(DataSet)
     plot(MaxTimeMesSelecionado,MaxSSTMesSelecionado,'sr','Markersize',10,'MarkerFaceColor','r');hold on
     plot(MinTimeMesSelecionado,MinSSTMesSelecionado,'sb','Markersize',10,'MarkerFaceColor','b');hold on
 
-
     axis([datenum(uY(1),1,1) datenum(uY(end),12,31) TempLimits])
     set(gca,'Xtick',fliplr(datenum(uY(end):-5:uY(1),MesSelecionado,15)))
     datetick('x','yyyy','keeplimits','keepticks')
@@ -218,19 +225,19 @@ for numDatSet = 1:1:length(DataSet)
 
     InformeMes1=sprintf('Temperatura media en %s %s: %4.2f C [%s].\n',...
         TMesSelecionado,...
-        datestr(TimeMesSelecionado(end),'yyyy'),...
+        string(datetime(TimeMesSelecionado(end),'ConvertFrom','datenum'),"yyyy","es_ES"), ...
         SSTMesSelecionado(end), ...
-       DataSet(numDatSet).nameLong);
+        DataSet(numDatSet).nameLong);
     InformeMes2=sprintf('(%s-%s): ', ...
         datestr(min(TimeMesSelecionado),'yyyy'),datestr(max(TimeMesSelecionado),'yyyy'));
-    InformeMes3=sprintf('Temperatura media en %s: %4.2f C, desviacion standart: %04.2f C.\n', ...
+    InformeMes3=sprintf('Temperatura media en %s: %4.2f C, desviación estándar: %04.2f C.\n', ...
         TMesSelecionado,...
         MeanSSTMesSelecionado,StdSSTMesSelecionado);
-    InformeMes4=sprintf('Temperatura maxima [%s]: %4.2f C. ', ...
-        datestr(MaxTimeMesSelecionado,'mmmm yyyy'),...
+    InformeMes4=sprintf('Temperatura máxima [%s]: %4.2f C. ', ...
+        string(datetime(MaxTimeMesSelecionado,'ConvertFrom','datenum'),"MMMM yyyy","es_ES"), ...
         MaxSSTMesSelecionado);
-    InformeMes5=sprintf('Temperatura minima [%s]: %4.2f C.', ...
-        datestr(MinTimeMesSelecionado,'mmmm yyyy'),...
+    InformeMes5=sprintf('Temperatura mínima [%s]: %4.2f C.', ...
+        string(datetime(MinTimeMesSelecionado,'ConvertFrom','datenum'),"MMMM yyyy","es_ES"), ...
         MinSSTMesSelecionado);
     InformeMes=sprintf('%s',InformeMes1,InformeMes2,InformeMes3,InformeMes4,InformeMes5);
     title(InformeMes)
@@ -238,7 +245,6 @@ for numDatSet = 1:1:length(DataSet)
     CreaFigura(gcf,FicheroGraficoMes,[4])
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
     CreaFigura(gcf,FicheroGraficoMesNombre,[4])
-
 
     %% Diagrama de Hovmoller
     % Ano sintentico en 1980
@@ -298,17 +304,17 @@ for numDatSet = 1:1:length(DataSet)
     datetick('x','dd.mmmm','keeplimits','keepticks')
     set(gca,'XtickLabel',['1 Febrero  ';'1 Mayo     ';'1 Agosto   ';'1 Noviembre'])
 
-    InformeHovMollerDiario=sprintf('Anomalias de temperatura diarias [%s]. Actualizado %s. \n Periodo de referencia para las anomalias (%4d-%4d).', ...
+    InformeHovMollerDiario=sprintf('Anomalías de temperatura diarias [%s]. Actualizado %s. \n Periodo de referencia para las anomalías (%4d-%4d).', ...
         DataSet(numDatSet).nameLong, ...
-        datestr(datestr(max(Timed)),'dd mmmm yyyy'), ...
+    string(datetime(max(Timed),'ConvertFrom','datenum'),"dd MMMM yyyy","es_ES"), ...
         uY(1), ...
         uY(end-1));
     title(InformeHovMollerDiario)
 
     CreaFigura(gcf,FicheroGraficoHMDiario,[4])
 
+    %% Upload to ftp the images
 
-    % Upload to fto the images
     ftpobj=FtpOceanografia;
     cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoCicloEstacional);
@@ -325,6 +331,7 @@ for numDatSet = 1:1:length(DataSet)
     mput(ftpobj,FicheroGraficoMes);
     mput(ftpobj,FicheroGraficoMesNombre);
     close(ftpobj)
-    % Save Reports
+    
+    %% Save Reports
     save(FileNameInforme,'InformeMes','InformeDia');
 end

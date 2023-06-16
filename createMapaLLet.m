@@ -109,7 +109,7 @@ fprintf(fid,'            color  : estacion[9],\n');
 fprintf(fid,'            title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
 fprintf(fid,'            opacity: 1,\n');  
 fprintf(fid,'            fillOpacity:.45,\n');  
-fprintf(fid,'            fillColor:estacion[9]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST''+estacion[4]+''.html" target="_blank">''+estacion[5]+''</a></b><br><b>Último dato: </b>''+estacion[6]+''<br>''+estacion[7]+''</p> </center>'');\n');  
+fprintf(fid,'            fillColor:estacion[9]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST''+estacion[4]+''.html" target="_blank">Temperatura superficial en la radial de ''+estacion[5]+''</a></b><br><b>Último dato: </b>''+estacion[7]+'' (''+estacion[6]+'')</p> </center>'');\n');  
 fprintf(fid,'		}else if (estacion[0] == 0) {\n');  
 fprintf(fid,'			L.marker([estacion[2], estacion[3]],{\n');  
 fprintf(fid,'			icon: marcador0,\n');  

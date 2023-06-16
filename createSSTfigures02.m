@@ -4,7 +4,6 @@ clc;clear all;close all
 configSSTWebpage
 
 %% Inicio
-
 for numDatSet = 1:1:length(DataSet)
     DataFile=strcat('SST',DataSet(numDatSet).name);
     Estaciones=DataSet(numDatSet).Estaciones;
@@ -75,15 +74,19 @@ for numDatSet = 1:1:length(DataSet)
     StdEstacionesSSTanualHoyM=nanstd(MEstacionesSSTanualHoyM);
 
     % Calculo el offeset asociado a la falta de dias en el promedio anual
+    % Asumo que la anomalia que hay hoy es la anomalia del año
     OffSetDiaHoy=nanmean(MEstacionesSSTanualM-MEstacionesSSTanualHoyM);
 
     %% Figuras
     figure
-    %Limites
-    %TempLimits=extrem([MEstacionesSSTanualM(1:end-1) MEstacionesSSTanualHoyM(end)+OffSetDiaHoy nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM]);
-    TempLimits=[nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM];
 
-    %Desviacion standard
+    %Limites
+    %TempLimits=[nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM];
+    TempLimits(1)=nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM;
+    TempLimits(2)=max(nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM,MEstacionesSSTanualHoyM(end)+OffSetDiaHoy);
+
+
+    %Desviacion estandar
     patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)], ...
         [nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))-2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+2*StdEstacionesSSTanualM], ...
         [0.95 0.95 0.95],'edgecolor',[0.95 0.95 0.95]); hold on;grid on;alpha(0.6)
@@ -129,7 +132,7 @@ for numDatSet = 1:1:length(DataSet)
     InformeAnho2=sprintf('%s-%s: ', ...
         datestr(nanmin(TimeAnual),'yyyy'),datestr(nanmax(TimeAnual),'yyyy'));
 
-    InformeAnho3=sprintf('Temperatura media: %4.2f C, desviacion standard: %04.2f C.\n', ...
+    InformeAnho3=sprintf('Temperatura media: %4.2f C, desviación estandar: %04.2f C.\n', ...
         nanmean(MEstacionesSSTanualM(1:end-1)), ...
         nanstd(MEstacionesSSTanualM(1:end-1)));
     InformeAnho4=sprintf('Maxima [%s]: %4.2 ºC. ',...
@@ -145,7 +148,7 @@ for numDatSet = 1:1:length(DataSet)
     CreaFigura(gcf,FicheroGraficoAno,[4])
     CreaFigura(gcf,FicheroGraficoAnoNombre,[4])
 
-    %Ftp the file
+    %% Ftp the files
     ftpobj=FtpOceanografia;
     cd(ftpobj,DirHTML);
     mput(ftpobj,FicheroGraficoAno);
@@ -157,7 +160,6 @@ for numDatSet = 1:1:length(DataSet)
     mput(ftpobj,FicheroGraficoAno);
     mput(ftpobj,FicheroGraficoAnoNombre);
     close(ftpobj)
-
 
     save(FileNameInforme,'InformeAnho');
     fprintf(' \nSaving report\n')

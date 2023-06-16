@@ -18,7 +18,7 @@
 <body> 
     <div align="center">
         Temperatura superficial del mar en las demarcaciones Españolas.<br/>
-         Actualidado el 15-Jun-2023 .<br/>
+         Actualizado el 16-Jun-2023 .<br/>
         <div id="map" style="width: 700px; height: 650px;"></div> 
     </div>
 <script type="text/javascript">
@@ -40,22 +40,22 @@
        marcador1 = new stationIcon({iconUrl: 'http://www.oceanografia.es/argo/imagenes/icons8-select-10.png'});
  //Datos de las ultimas ocupaciones de las estaciones
    var estaciones = [
-           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','13-Jun-2023','23.21ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','13-Jun-2023','23.21ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','13-Jun-2023','23.21ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','13-Jun-2023','23.21ºC','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','Vigo','13-Jun-2023','18.57ºC','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','Vigo','13-Jun-2023','18.57ºC','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','Gijón','13-Jun-2023','18.91ºC','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','Gijón','13-Jun-2023','18.91ºC','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','Santander','13-Jun-2023','20.28ºC','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','Santander','13-Jun-2023','20.28ºC','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','Cádiz','13-Jun-2023','21.57ºC','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','Cádiz','13-Jun-2023','21.57ºC','BottonValue','#bf3eff'], 
-           [1,'',36.53,-3.47,'Malaga','Málaga','13-Jun-2023','20.01ºC','BottonValue','#bf3eff'], 
-           [1,'',36.53,-3.47,'Malaga','Málaga','13-Jun-2023','20.01ºC','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','Palma de Mallorca','13-Jun-2023','23.60ºC','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','Palma de Mallorca','13-Jun-2023','23.60ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','12-Jun-2023','23.27ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','12-Jun-2023','18.72ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','12-Jun-2023','18.72ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','12-Jun-2023','18.62ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','12-Jun-2023','18.62ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','12-Jun-2023','20.16ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','12-Jun-2023','20.16ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','12-Jun-2023','21.66ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','12-Jun-2023','21.66ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','12-Jun-2023','20.62ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','12-Jun-2023','20.62ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','12-Jun-2023','23.25ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','12-Jun-2023','23.25ºC','BottonValue','#bf3eff'], 
 		];
 for (var i = 0; i < estaciones.length; i++) {
 		var estacion = estaciones[i];
@@ -66,7 +66,7 @@ for (var i = 0; i < estaciones.length; i++) {
             title: estacion[4]+estacion[1]+' '+estacion[5],
             opacity: 1,
             fillOpacity:.45,
-            fillColor:estacion[9]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST'+estacion[4]+'.html" target="_blank">'+estacion[5]+'</a></b><br><b>Último dato: </b>'+estacion[6]+'<br>'+estacion[7]+'</p> </center>');
+            fillColor:estacion[9]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST'+estacion[4]+'.html" target="_blank">Temperatura superficial en la radial de '+estacion[5]+'</a></b><br><b>Último dato: </b>'+estacion[7]+' ('+estacion[6]+')</p> </center>');
 		}else if (estacion[0] == 0) {
 			L.marker([estacion[2], estacion[3]],{
 			icon: marcador0,
