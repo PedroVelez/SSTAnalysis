@@ -9,7 +9,7 @@ lat_max=50;
 
 %Time period
 AnhoI=1982;
-AnhoF=2023;
+AnhoF=2024;
 
 %Data files
 DirDataSST=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');

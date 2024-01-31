@@ -4,8 +4,9 @@ global GlobalSU;load Globales
 % A partir de los netcdf anuales crea un .mat para la region especificada. 
 % lo hacen en lon -180,180
 
-AnhoI=1982;
-AnhoF=2022;
+%AnhoI=1982;
+AnhoI=2022;
+AnhoF=2024;
 
 DirOutData=fullfile(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
 
