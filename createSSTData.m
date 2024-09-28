@@ -16,7 +16,7 @@ DataSST=matfile(strcat(Files(iFileLast).folder,'/',Files(iFileLast).name));
 
 for iest=1:1:length(DataSet)
     fprintf('Interpolating data into %s section (%d/%d): ',DataSet(iest).name,iest,length(DataSet))
-    data=load(strcat(GlobalSU.AnaPath,'/SSTWebpage/data/Estaciones',DataSet(iest).name,'.txt'));
+    data=load(strcat(GlobalSU.AnaPath,'/SSTAnalysis/data/Estaciones',DataSet(iest).name,'.txt'));
 
     loneR=data(:,1)';
     lateR=data(:,2)';

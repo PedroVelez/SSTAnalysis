@@ -83,7 +83,7 @@ for ir=2:1:length(DataSet)
     fprintf('Reading %s section (%d/%d): \n',DataSet(ir).name,ir,length(DataSet))
     DataFile=strcat('SST',DataSet(ir).name);
     Estaciones=DataSet(ir).Estaciones;
-    data=load(strcat(GlobalSU.AnaPath,'/SSTWebpage/data/SST',DataSet(ir).name,'.mat'));
+    data=load(strcat(GlobalSU.AnaPath,'/SSTAnalysis/data/SST',DataSet(ir).name,'.mat'));
     loneR=data.loneR;
     lateR=data.lateR;
     for ie=Estaciones
