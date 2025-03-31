@@ -9,11 +9,12 @@ lat_max=50;
 
 %Time period
 AnhoI=1982;
-AnhoF=2024;
+AnhoF=2025;
 
 %Data files
-DirDataSST=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
-DirDataSSTNC=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
+DirDataSST=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
+DirDataSSTAnuales=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres/Anuales');
+DirDataSSTNC=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres/NC');
 FileDataSST=strcat(DirDataSST,'/NOAAOisstv2HighresSstDayMean');
 
 %Stations files

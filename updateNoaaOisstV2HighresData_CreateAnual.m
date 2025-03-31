@@ -4,11 +4,10 @@ global GlobalSU;load Globales
 % A partir de los netcdf anuales crea un .mat para la region especificada. 
 % lo hacen en lon -180,180
 
-%AnhoI=1982;
 AnhoI=2022;
 AnhoF=2024;
 
-DirOutData=fullfile(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres');
+DirOutData=fullfile(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
 
 Region='Espanha';
 GlobalDS.lon_min=-25+360;
@@ -19,7 +18,7 @@ GlobalDS.lat_max=50;
 fprintf('     > %s\n',Region)
 %% inicio
 for ianho=AnhoI:1:AnhoF
-    FileInUltimo=strcat(GlobalSU.DatPath_Server,'/Satelite/noaa.oisst.v2.highres/NC/sst.day.mean.',num2str(ianho),'.nc');
+    FileInUltimo=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres/NC/sst.day.mean.',num2str(ianho),'.nc');
     fprintf('     > Reading data from %s \n',FileInUltimo)
 
     ttime=double(ncread(FileInUltimo,'time'));ttime=ttime+datenum(1800,1,1);%days since 1800-01-01 00:00:00
