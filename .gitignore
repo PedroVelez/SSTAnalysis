@@ -5,6 +5,7 @@ images/*
 data/report*
 data/*.mat
 data/*.html
+data/SSTMapa.html
 .AppleDouble
 .AppleDouble/*
 .DS_Store
