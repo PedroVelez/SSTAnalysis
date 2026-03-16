@@ -324,13 +324,13 @@ for numDatSet = 1:1:length(DataSet)
     close(ftpobj)
 
 
-    ftpobj=FtpOceanografia;
-    cd(ftpobj,DirHTMLIEOOS);
-    mput(ftpobj,FicheroGraficoCicloEstacional);
-    mput(ftpobj,FicheroGraficoHMDiario);
-    mput(ftpobj,FicheroGraficoMes);
-    mput(ftpobj,FicheroGraficoMesNombre);
-    close(ftpobj)
+%    ftpobj=FtpOceanografia;
+%    cd(ftpobj,DirHTMLIEOOS);
+%    mput(ftpobj,FicheroGraficoCicloEstacional);
+%    mput(ftpobj,FicheroGraficoHMDiario);
+%    mput(ftpobj,FicheroGraficoMes);
+%    mput(ftpobj,FicheroGraficoMesNombre);
+%    close(ftpobj)
     
     %% Save Reports
     save(FileNameInforme,'InformeMes','InformeDia');

@@ -5,7 +5,7 @@ global GlobalSU;load Globales
 % lo hacen en lon -180,180
 
 AnhoI=2022;
-AnhoF=2024;
+AnhoF=2025;
 
 DirOutData=fullfile(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
 

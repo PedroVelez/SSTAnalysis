@@ -9,7 +9,7 @@ close all;clear all;clc
 
 [Ynow,Mnow,Dnow]=datevec(now);
 AnhoI=1982;
-AnhoF=2025;
+AnhoF=2026;
 
 %% inicio
 configSSTWebpage

@@ -71,8 +71,8 @@ fprintf(fid,'           iconAnchor:   [ 5,  5],\n');
 fprintf(fid,'           popupAnchor:  [-3, -76]\n');  
 fprintf(fid,'       }\n');  
 fprintf(fid,'   });\n');  
-fprintf(fid,'   var marcador0 = new stationIcon({iconUrl: ''http://www.oceanografia.es/argo/imagenes/icons8-select-10.png''}),\n');  
-fprintf(fid,'       marcador1 = new stationIcon({iconUrl: ''http://www.oceanografia.es/argo/imagenes/icons8-select-10.png''});\n');  
+fprintf(fid,'   var marcador0 = new stationIcon({iconUrl: ''https://www.argoespana.es/imagenes/icons8-select-10.png''}),\n');  
+fprintf(fid,'       marcador1 = new stationIcon({iconUrl: ''https://www.argoespana.es/imagenes/icons8-select-10.png''});\n');  
  
 
 %Estaciones
@@ -109,12 +109,12 @@ fprintf(fid,'            color  : estacion[9],\n');
 fprintf(fid,'            title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
 fprintf(fid,'            opacity: 1,\n');  
 fprintf(fid,'            fillOpacity:.45,\n');  
-fprintf(fid,'            fillColor:estacion[9]}).addTo(map).bindPopup(''<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST''+estacion[4]+''.html" target="_blank">Temperatura superficial en la radial de ''+estacion[5]+''</a></b><br><b>Último dato: </b>''+estacion[7]+'' (''+estacion[6]+'')</p> </center>'');\n');  
+fprintf(fid,'            fillColor:estacion[9]}).addTo(map).bindPopup(''<center><p><b><a href="https://www.oceanografia.es/pedro/SST''+estacion[4]+''.html" target="_blank">Temperatura superficial en la radial de ''+estacion[5]+''</a></b><br><b>Último dato: </b>''+estacion[7]+'' (''+estacion[6]+'')</p> </center>'');\n');  
 fprintf(fid,'		}else if (estacion[0] == 0) {\n');  
 fprintf(fid,'			L.marker([estacion[2], estacion[3]],{\n');  
 fprintf(fid,'			icon: marcador0,\n');  
 fprintf(fid,'			title: estacion[4]+estacion[1]+'' ''+estacion[5],\n');  
-fprintf(fid,'			}).addTo(map).bindPopup(''<center><p>Station <b><a href="http://www.oceanografia.es/IEOOS/SST/SST+''+estacion[1]+''.html" target="_blank">''+estacion[1]+''</a></b><br><b>''+estacion[4]+''</b><br><br><b>Last profile&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
+fprintf(fid,'			}).addTo(map).bindPopup(''<center><p>Station <b><a href="https://www.oceanografia.es/pedro/SST+''+estacion[1]+''.html" target="_blank">''+estacion[1]+''</a></b><br><b>''+estacion[4]+''</b><br><br><b>Last profile&nbsp;</b>''+estacion[5]+''</p></center>'');\n');  
 fprintf(fid,'		}\n');
 fprintf(fid,'	}\n');
 
@@ -131,7 +131,7 @@ fclose(fid);
 %% Ftp the file
 fprintf('     > Uploading  %s \n',FileHtmlIEOOSStatus);
 ftpobj=FtpOceanografia;
-cd(ftpobj,'/html/IEOOS/SST');
+cd(ftpobj,'/html/pedro');
 mput(ftpobj,FileHtmlIEOOSStatus);
 
 %% Writting Informe

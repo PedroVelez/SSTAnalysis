@@ -1,7 +1,6 @@
 #!/bin/bash
-source $HOME/.telegram
 
-Verbose=0
+Verbose=1
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
 PaginaWebDir=$HOME/Analisis/SSTAnalysis
@@ -112,20 +111,3 @@ then
 else
   cd $PaginaWebDir; $MatVersion -nodisplay -nosplash -r 'createReport;exit' > $DirLog/createReport.log
 fi
-
-
-
-#------------------------------------
-# i TelegramBot
-#------------------------------------
-URL="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendMessage"
-URLimg="https://api.telegram.org/bot$ArgoEsBotTOKEN/sendphoto?chat_id=$ArgoEsChannel"
-MENSAJE=`cat $HOME/Analisis/SSTAnalysis/data/report.txt`
-
-curl -s -X POST $URL -d chat_id=$ArgoEsChannel -d text="$MENSAJE" -d parse_mode=html > $DirLog/bot.log
-curl -F "photo=@$HOME/Analisis/SSTAnalysis/images/GraficosSSTNorteTenerife_CicloEstacional_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_CicloEstacional"
-curl -F "photo=@$HOME/Analisis/SSTAnalysis/images/GraficosSSTNorteTenerife_Anual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Anual"
-curl -F "photo=@$HOME/Analisis/SSTAnalysis/images/GraficosSSTNorteTenerife_Mensual_Seccion01_02.png" $URLimg -F caption="GraficosSSTNorteTenerife_Mensual"
-
-
-

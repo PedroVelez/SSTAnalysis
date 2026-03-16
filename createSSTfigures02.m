@@ -155,11 +155,11 @@ for numDatSet = 1:1:length(DataSet)
     mput(ftpobj,FicheroGraficoAnoNombre);
     close(ftpobj)
 
-    ftpobj=FtpOceanografia;
-    cd(ftpobj,DirHTMLIEOOS);
-    mput(ftpobj,FicheroGraficoAno);
-    mput(ftpobj,FicheroGraficoAnoNombre);
-    close(ftpobj)
+    %ftpobj=FtpOceanografia;
+    %cd(ftpobj,DirHTMLIEOOS);
+    %mput(ftpobj,FicheroGraficoAno);
+    %mput(ftpobj,FicheroGraficoAnoNombre);
+    %close(ftpobj)
 
     save(FileNameInforme,'InformeAnho');
     fprintf(' \nSaving report\n')

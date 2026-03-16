@@ -9,7 +9,7 @@ lat_max=50;
 
 %Time period
 AnhoI=1982;
-AnhoF=2025;
+AnhoF=2026;
 
 %Data files
 DirDataSST=strcat(GlobalSU.DatPath,'/Satelite/noaa.oisst.v2.highres');
@@ -86,8 +86,8 @@ DataSet(isec).TemperatureLimts=[12 30];
 DirFigures=strcat(GlobalSU.AnaPath,'/SSTAnalysis');
 
 %Directorio html servidor PP
-DirHTML='/html/pedro/images';
-DirHTMLIEOOS='/html/IEOOS/SST/images';
+DirHTML='/html/pedro/images/SST';
+DirHTMLIEOOS='/html/images/SST';
 
 FuenteDatos=sprintf('Elaborado por el Instituto Espanol de Oceanografia\n a partir de datos de https://www.ncdc.noaa.gov/oisst');
 

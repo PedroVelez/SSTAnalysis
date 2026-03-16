@@ -18,7 +18,7 @@
 <body> 
     <div align="center">
         Temperatura superficial del mar en las demarcaciones Españolas.<br/>
-         Actualizado el 30-May-2025 .<br/>
+         Actualizado el 16-Mar-2026 .<br/>
         <div id="map" style="width: 700px; height: 650px;"></div> 
     </div>
 <script type="text/javascript">
@@ -36,26 +36,26 @@
            popupAnchor:  [-3, -76]
        }
    });
-   var marcador0 = new stationIcon({iconUrl: 'http://www.oceanografia.es/argo/imagenes/icons8-select-10.png'}),
-       marcador1 = new stationIcon({iconUrl: 'http://www.oceanografia.es/argo/imagenes/icons8-select-10.png'});
+   var marcador0 = new stationIcon({iconUrl: 'https://www.argoespana.es/imagenes/icons8-select-10.png'}),
+       marcador1 = new stationIcon({iconUrl: 'https://www.argoespana.es/imagenes/icons8-select-10.png'});
  //Datos de las ultimas ocupaciones de las estaciones
    var estaciones = [
-           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','29-May-2025','21.29ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','29-May-2025','21.29ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','29-May-2025','21.29ºC','BottonValue','#bf3eff'], 
-           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','29-May-2025','21.29ºC','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','Vigo','29-May-2025','16.63ºC','BottonValue','#bf3eff'], 
-           [1,'',42.13,-9.12,'Vigo','Vigo','29-May-2025','16.63ºC','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','Gijón','29-May-2025','17.63ºC','BottonValue','#bf3eff'], 
-           [1,'',43.78,-5.55,'Gijon','Gijón','29-May-2025','17.63ºC','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','Santander','29-May-2025','17.93ºC','BottonValue','#bf3eff'], 
-           [1,'',43.80,-3.78,'Santander','Santander','29-May-2025','17.93ºC','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','Cádiz','29-May-2025','20.45ºC','BottonValue','#bf3eff'], 
-           [1,'',36.15,-6.71,'Cadiz','Cádiz','29-May-2025','20.45ºC','BottonValue','#bf3eff'], 
-           [1,'',36.53,-3.47,'Malaga','Málaga','29-May-2025','21.23ºC','BottonValue','#bf3eff'], 
-           [1,'',36.53,-3.47,'Malaga','Málaga','29-May-2025','21.23ºC','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','Palma de Mallorca','29-May-2025','21.66ºC','BottonValue','#bf3eff'], 
-           [1,'',39.32,2.43,'Palma','Palma de Mallorca','29-May-2025','21.66ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','15-Mar-2026','18.84ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'NorteTenerife','NorteTenerife','15-Mar-2026','18.84ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','15-Mar-2026','18.84ºC','BottonValue','#bf3eff'], 
+           [1,'',28.56,-16.12,'Tenerife','Santa Cruz de Tenerife','15-Mar-2026','18.84ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','15-Mar-2026','13.45ºC','BottonValue','#bf3eff'], 
+           [1,'',42.13,-9.12,'Vigo','Vigo','15-Mar-2026','13.45ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','15-Mar-2026','13.29ºC','BottonValue','#bf3eff'], 
+           [1,'',43.78,-5.55,'Gijon','Gijón','15-Mar-2026','13.29ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','15-Mar-2026','13.34ºC','BottonValue','#bf3eff'], 
+           [1,'',43.80,-3.78,'Santander','Santander','15-Mar-2026','13.34ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','15-Mar-2026','16.13ºC','BottonValue','#bf3eff'], 
+           [1,'',36.15,-6.71,'Cadiz','Cádiz','15-Mar-2026','16.13ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','15-Mar-2026','15.47ºC','BottonValue','#bf3eff'], 
+           [1,'',36.53,-3.47,'Malaga','Málaga','15-Mar-2026','15.47ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','15-Mar-2026','15.09ºC','BottonValue','#bf3eff'], 
+           [1,'',39.32,2.43,'Palma','Palma de Mallorca','15-Mar-2026','15.09ºC','BottonValue','#bf3eff'], 
 		];
 for (var i = 0; i < estaciones.length; i++) {
 		var estacion = estaciones[i];
@@ -66,12 +66,12 @@ for (var i = 0; i < estaciones.length; i++) {
             title: estacion[4]+estacion[1]+' '+estacion[5],
             opacity: 1,
             fillOpacity:.45,
-            fillColor:estacion[9]}).addTo(map).bindPopup('<center><p><b><a href="http://www.oceanografia.es/IEOOS/SST/SST'+estacion[4]+'.html" target="_blank">Temperatura superficial en la radial de '+estacion[5]+'</a></b><br><b>Último dato: </b>'+estacion[7]+' ('+estacion[6]+')</p> </center>');
+            fillColor:estacion[9]}).addTo(map).bindPopup('<center><p><b><a href="https://www.oceanografia.es/pedro/SST'+estacion[4]+'.html" target="_blank">Temperatura superficial en la radial de '+estacion[5]+'</a></b><br><b>Último dato: </b>'+estacion[7]+' ('+estacion[6]+')</p> </center>');
 		}else if (estacion[0] == 0) {
 			L.marker([estacion[2], estacion[3]],{
 			icon: marcador0,
 			title: estacion[4]+estacion[1]+' '+estacion[5],
-			}).addTo(map).bindPopup('<center><p>Station <b><a href="http://www.oceanografia.es/IEOOS/SST/SST+'+estacion[1]+'.html" target="_blank">'+estacion[1]+'</a></b><br><b>'+estacion[4]+'</b><br><br><b>Last profile&nbsp;</b>'+estacion[5]+'</p></center>');
+			}).addTo(map).bindPopup('<center><p>Station <b><a href="https://www.oceanografia.es/pedro/SST+'+estacion[1]+'.html" target="_blank">'+estacion[1]+'</a></b><br><b>'+estacion[4]+'</b><br><br><b>Last profile&nbsp;</b>'+estacion[5]+'</p></center>');
 		}
 	}
 </script> 

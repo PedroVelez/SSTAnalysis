@@ -8,7 +8,9 @@ Poner AnhoF=2023;
 2- uso updateNoaaOisstV2HighresData_AppendAnuals para crear el fichero total con los datos desde 01011982 hasta 31122023
 Poner AnhoF=2023;
 
-3- updateNoaaOisstV2HighresData_newyear para crear el primer ficherio 01011982 hasta 10012024 (por ejemplo)
+3- mover el fichero creado desde 01011982 hasta 31122023 a /data/pvb/noa--/Anuales
+ 
+4- updateNoaaOisstV2HighresData_newyear para crear el primer ficherio 01011982 hasta 10012024 (por ejemplo)
 Poner en AnhoF=2024; 
  
 
