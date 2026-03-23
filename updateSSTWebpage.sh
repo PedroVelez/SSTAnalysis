@@ -3,7 +3,7 @@
 Verbose=1
 SoloSube=0 #Si es 1 solo sube los datos. Si es 0 actualiza y sube los datos
 
-PaginaWebDir=$HOME/Analisis/SSTAnalysis
+PaginaWebDir=$HOME/Proyectos/SSTAnalysis
 DirLog=$PaginaWebDir/log
 
 
