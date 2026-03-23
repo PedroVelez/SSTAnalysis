@@ -81,10 +81,8 @@ for numDatSet = 1:1:length(DataSet)
     figure
 
     %Limites
-    %TempLimits=[nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM];
     TempLimits(1)=nanmean(MEstacionesSSTanualM(1:end-1))-3*StdEstacionesSSTanualM;
     TempLimits(2)=max(nanmean(MEstacionesSSTanualM(1:end-1))+3*StdEstacionesSSTanualM,MEstacionesSSTanualHoyM(end)+OffSetDiaHoy);
-
 
     %Desviacion estandar
     patch([datenum(uY(1),1,1) datenum(uY(end),12,31) datenum(uY(end),12,31) datenum(uY(1),1,1)], ...
@@ -154,12 +152,6 @@ for numDatSet = 1:1:length(DataSet)
     mput(ftpobj,FicheroGraficoAno);
     mput(ftpobj,FicheroGraficoAnoNombre);
     close(ftpobj)
-
-    %ftpobj=FtpOceanografia;
-    %cd(ftpobj,DirHTMLIEOOS);
-    %mput(ftpobj,FicheroGraficoAno);
-    %mput(ftpobj,FicheroGraficoAnoNombre);
-    %close(ftpobj)
 
     save(FileNameInforme,'InformeAnho');
     fprintf(' \nSaving report\n')
